@@ -1,0 +1,6 @@
+[submodule "ember-demo"]
+	path = ember-demo
+	url = https://github.com/leon-ho/ember-demo.git
+[submodule "angular-demo"]
+	path = angular-demo
+	url = https://github.com/leon-ho/angular-demo.git
