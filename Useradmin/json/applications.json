@@ -1,0 +1,20 @@
+{
+    "applications": [
+        {
+            "appId": "1",
+            "applicationName": "UserAdmin"
+        },
+        {
+            "appId": "2",
+            "applicationName": "Mobilefirst"
+        },
+        {
+            "appId": "3",
+            "applicationName": "Whydah"
+        },
+        {
+            "appId": "4",
+            "applicationName": "ACS"
+        }
+    ]
+}

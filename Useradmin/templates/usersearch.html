@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-md-3">
+    <h2>
+      <input type="text" class="form-control" ng-model="searchQuery" placeholder="Search users" ng-change="searchAcs()" autofocus> 
+    </h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-9">
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-md-9">
+
+    <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> Add user</button>
+    <div class="btn-group">
+      <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> Add role</button>
+      <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus"></span> Remove role</button>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-default btn-sm">Add role</button>
+      <button type="button" class="btn btn-default btn-sm">Remove role</button>
+    </div>
+
+    <div class="panel panel-default margin-top">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Username</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Phone</th>
+            <th>E-mail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="user in users" class="itemrow">
+            <td><input type="checkbox"></td>
+            <td><a href="#/user/{{user.username}}">{{user.username}}</a></td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.cellPhone}}</td>
+            <td>{{user.email}}</td>
+          </tr>
+          <tr ng-if="!users.length && searchQuery">
+            <td colspan="4">No results for search "{{searchQuery}}".</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+  <div class="col-md-3">
+    
+    <div class="panel panel-default">
+      
+      <div class="panel-heading"><h3 class="panel-title">Filter</h3></div>
+
+      <div class="panel-body">
+        <ul class="list-group">
+          <li ng-repeat="app in applications" class="list-group-item">
+            <label>
+              <input type="checkbox"> {{app.applicationName}}
+            </label>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
