@@ -3,20 +3,16 @@ var UseradminApp = angular.module('UseradminApp', ['ngRoute', 'ngAnimate']);
 UseradminApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/', {
+      when('/user/', {
         templateUrl: 'templates/usersearch.html',
-        controller: 'UsersearchCtrl'
-      }).
-      when('/user/:username', {
-        templateUrl: 'templates/userdetail.html',
-        controller: 'UserdetailCtrl'
+        controller: 'UserCtrl'
       }).
       when('/application/', {
         templateUrl: 'templates/applicationsearch.html',
         controller: 'ApplicationsearchCtrl'
       }).
       otherwise({
-        redirectTo: '/'
+        redirectTo: '/user/'
       });
 }]);
 
@@ -24,10 +20,12 @@ UseradminApp.controller('MainCtrl', function($scope, $routeParams) {
   $scope.activeTab = 'user';
   $scope.lang = 'en';
   $scope.users = [];
+  $scope.usersSelected = false;
   $scope.errors = [];
 });
 
-UseradminApp.controller('UsersearchCtrl', function($scope, $http) {
+UseradminApp.controller('UserCtrl', function($scope, $http, $routeParams) {
+
   $scope.activeTab = 'user';
   
   $scope.loadApplications = function() {
@@ -50,9 +48,30 @@ UseradminApp.controller('UsersearchCtrl', function($scope, $http) {
     });
   };
 
+  $scope.getUserByUsername = function(username, callback) {
+    console.log('Getting user by username:', username);
+    $http({
+      method: 'GET',
+      url: 'json/user.json',
+      params: {username:username}
+    }).success(function(data){
+      callback(data);
+    });
+  }
+
   $scope.searchUsers();
   $scope.loadApplications();
- 
+
+  $scope.activateUserDetail = function(username) {
+    console.log('Activating user detail...', username);
+    $scope.getUserByUsername(username, function(data){
+      $('#userdetail').modal('show');
+      $scope.user = data;
+    });
+  }
+
+  console.log( $('button').tooltip({}) );
+
 });
 
 UseradminApp.controller('UserdetailCtrl', function($scope, $http, $routeParams) {
@@ -81,19 +100,7 @@ UseradminApp.controller('UserdetailCtrl', function($scope, $http, $routeParams) 
       roleName: 'Role',
       roleValue: 'Value'
     }
-  }  
-  $scope.getUserByUsername = function(username) {
-    console.log('Getting user by username:', username);
-    $http({
-      method: 'GET',
-      url: 'json/user.json',
-      params: {username:username}
-    }).success(function (data) {
-      $scope.user = data;
-    });
-  }
-
-  $scope.getUserByUsername($routeParams.username);
+  } 
 
   function saveUser() {
     $http({
@@ -107,8 +114,57 @@ UseradminApp.controller('UserdetailCtrl', function($scope, $http, $routeParams) 
 
 });
 
+UseradminApp.directive('editableTr', function(){
+  return {
+    template: '<h1>LOL</h1>'
+  }
+});
+
 
 UseradminApp.controller('ApplicationsearchCtrl', function($scope) {
   $scope.activeTab = 'application';
 });
 
+UseradminApp.directive('triStateCheckbox', function() {
+  return {
+    restrict: 'A',
+    replace: true,
+    scope: { elements: '=', elementsSelected: '=' },
+    template: '<input type="checkbox" ng-model="allChecked" ng-change="allCheckedChange()">',
+    controller: function($scope, $element) {
+      $scope.allCheckedChange = function() {
+        if($scope.allChecked) {
+          angular.forEach($scope.elements, function(el, index){
+            el.isSelected = true;
+          });
+        } else {
+          angular.forEach($scope.elements, function(el, index){
+            el.isSelected = false;
+          });
+        }
+      };
+      $scope.$watch('elements', function() {
+        var allSet = true, allClear = true;
+        angular.forEach($scope.elements, function(el, index){
+          if(el.isSelected) {
+            allClear = false;
+          } else {
+            allSet = false;
+          }
+        });
+        if(allSet) { 
+          $scope.allChecked = true; 
+          $element.prop('indeterminate', false);
+        } else if(allClear) { 
+          $scope.allChecked = false; 
+          $element.prop('indeterminate', false);
+        } else { 
+          $scope.allChecked = false;
+          $element.prop('indeterminate', true);
+        }
+        $scope.elementsSelected = !allClear;
+        console.log($scope.elementsSelected);
+      }, true);
+    }
+  };
+});
