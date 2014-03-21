@@ -11,9 +11,15 @@
   <div class="col-sm-9">
 
     <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> Add user</button>
-    <div class="btn-group">
-      <button type="button" class="btn btn-default btn-sm" ng-disabled="!usersSelected" data-toggle="tooltip" data-placement="top" title="Tooltip on top"><span class="glyphicon glyphicon-plus"></span> Add role</button>
-      <button type="button" class="btn btn-default btn-sm" ng-disabled="!usersSelected"><span class="glyphicon glyphicon-minus"></span> Remove role</button>
+    <div class="btn-group" tooltip="{{usersRequiredMessage}}">
+      <button type="button" class="btn btn-default btn-sm" ng-disabled="!usersSelected">
+        <span class="glyphicon glyphicon-plus"></span>
+        Add role
+      </button>
+      <button type="button" class="btn btn-default btn-sm" ng-disabled="!usersSelected">
+        <span class="glyphicon glyphicon-minus"></span>
+        Remove role
+      </button>
     </div>
 
     <div class="panel panel-default margin-top">
@@ -87,39 +93,11 @@
           </div>
         </div>
 
+        <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> Add role</button>
         <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus"></span> Remove selected roles</button>
 
-        <table class="table">
-          <thead>
-            <tr>
-              <th></th>
-              <th ng-repeat="prop in editableRoleProperties">{{dict[lang][prop]}}</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="role in user.propsAndRoles">
-              <td><input type="checkbox" ng-model="role.checked"></td>
-              <td ng-repeat="prop in editableRoleProperties"><input type="text" class="form-control" ng-model="role[prop]" ng-show="role.editing"><span ng-show="!role.editing">{{role[prop]}}</span></td>
-              <td>
-                <button class="btn btn-default btn-sm" ng-click="role.editing=true" ng-show="!role.editing">
-                  <span class="glyphicon glyphicon-pencil"></span>&nbsp;Edit
-                </button>
-                <button class="btn btn-default btn-sm" ng-click="role.editing=false" ng-show="role.editing">
-                  <span class="glyphicon glyphicon-ok"></span>&nbsp;Done
-                </button>
-              </td>
-            </tr>
-            <tr ng-if="!user.propsAndRoles.length">
-              <td colspan="{{editableRoleProperties.length+2}}">No roles yet.</td>
-            </tr>
-            <tr>
-              <td colspan="{{editableRoleProperties.length+2}}">
-                <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> Add role</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <table edit-table elements="user.propsAndRoles" visible-fields="editableRoleProperties"></table>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
