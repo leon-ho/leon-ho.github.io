@@ -7,7 +7,6 @@ UseradminApp.directive('triStateCheckbox', function() {
     template: '<input type="checkbox" ng-model="allChecked" ng-change="allCheckedChange()">',
     controller: function($scope, $element) {
       $scope.allCheckedChange = function() {
-        console.log('Tristate changed');
         angular.forEach($scope.elements, function(el, index){
           el.isSelected = $scope.allChecked;
         });
@@ -25,6 +24,7 @@ UseradminApp.directive('triStateCheckbox', function() {
         $scope.allChecked = allSet;
         $element.prop( 'indeterminate', !allSet && !allClear );
         $scope.elementsSelected = !allClear;
+        console.log('Tristate changed', $scope.allChecked);
       }, true);
     }
   };

@@ -11,6 +11,10 @@ UseradminApp.config(['$routeProvider',
         templateUrl: 'template/applicationsearch.html',
         controller: 'ApplicationsearchCtrl'
       }).
+      when('/about/', {
+        templateUrl: 'template/about.html',
+        controller: 'AboutCtrl'
+      }).
       otherwise({
         redirectTo: '/user/'
       });
@@ -18,12 +22,26 @@ UseradminApp.config(['$routeProvider',
 
 // "Global" variables
 UseradminApp.controller('MainCtrl', function($scope, $routeParams) {
-  $scope.activeTab = 'user';
-  $scope.lang = 'en';
-  $scope.errors = [];
+  $scope.conf = {
+    lang: 'en',
+    errors: []
+  }
+  $scope.session = {
+    activeTab: 'user',
+    foundUserList: []
+  }
 });
 
 // TODO: Move to separate js-file
 UseradminApp.controller('ApplicationsearchCtrl', function($scope) {
-  $scope.activeTab = 'application';
+  $scope.session.activeTab = 'application';
+});
+
+// TODO: Move to separate js-file
+UseradminApp.controller('AboutCtrl', function($scope) {
+  $scope.session.activeTab = 'about';
+});
+
+// TODO: Move to separate js-file
+UseradminApp.controller('AddroleCtrl', function($scope) {
 });

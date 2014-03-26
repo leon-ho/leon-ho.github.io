@@ -1,33 +1,60 @@
-<div class="row">
-  <div class="col-sm-3">
-    <h2>
-      <input type="search" class="form-control" ng-model="searchQuery" placeholder="Search users" ng-change="searchUsers()" autofocus> 
-    </h2>
+<div class="row margin-top">
+  <div class="col-xs-9 col-sm-5 col-md-4">
+    <input type="search" class="form-control" ng-model="searchQuery" placeholder="Search users" ng-change="searchUsers()" autofocus> 
+  </div>
+  <div class="col-xs-3 col-sm-5 col-md-8">
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="filterdropdown" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-filter"></span>
+        Filter 
+        <span ng-show="(users.applications | filter:{isSelected: true}).length > 0">
+          ({{(users.applications | filter:{isSelected: true}).length}} active)
+        </span>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="filterdropdown">
+        <li role="presentation" class="dropdown-header margin-top">Application</li>
+        <li role="presentation" ng-repeat="app in users.applications">
+          <a role="menuitem" tabindex="-1" href="" ng-click="app.isSelected=!app.isSelected">
+            <span class="glyphicon" ng-class="{'glyphicon-check': app.isSelected, 'glyphicon-unchecked': !app.isSelected}"></span>
+            {{app.applicationName}}
+          </a>
+        </li>
+        <li role="presentation" class="divider"></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Clear all</a></li>
+      </ul>
+    </div>
   </div>
 </div>
 
-<div class="row">
+<div class="row margin-top">
 
-  <div class="col-sm-9">
+  <div class="col-sm-12">
 
     <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> Add user</button>
-    <div class="btn-group" tooltip="{{usersRequiredMessage}}">
-      <button type="button" class="btn btn-default btn-sm" ng-disabled="!usersSelected">
+    <div class="btn-group" tooltip="{{users.requiredMessage}}">
+      <button class="btn btn-default btn-sm" ng-disabled="!users.selected" ng-click="addRoleForUsers()">
         <span class="glyphicon glyphicon-plus"></span>
         Add role
       </button>
-      <button type="button" class="btn btn-default btn-sm" ng-disabled="!usersSelected">
+      <button class="btn btn-default btn-sm" ng-disabled="!users.selected">
         <span class="glyphicon glyphicon-minus"></span>
         Remove role
       </button>
+      <button class="btn btn-default btn-sm" ng-disabled="!users.selected">
+        <span class="glyphicon glyphicon-lock"></span>
+        Reset password
+      </button>
     </div>
+
+    Selected users: {{(users.list | filter:{isSelected: true}).length}}
 
     <div class="panel panel-default margin-top">
 
       <table class="table">
         <thead>
           <tr>
-            <th><label><input tri-state-checkbox elements="users" elements-selected="usersSelected"></label></th>
+            <th><label><input tri-state-checkbox elements="users.list" elements-selected="users.selected"></label></th>
             <th>Username</th>
             <th>Firstname</th>
             <th>Lastname</th>
@@ -36,7 +63,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="user in users" class="itemrow">
+          <tr ng-repeat="user in users.list" class="itemrow">
             <td><label><input type="checkbox" ng-model="user.isSelected"></label></td>
             <td ng-click="activateUserDetail(user.username)">{{user.username}}</td>
             <td ng-click="activateUserDetail(user.username)">{{user.firstName}}</td>
@@ -44,7 +71,7 @@
             <td ng-click="activateUserDetail(user.username)">{{user.cellPhone}}</td>
             <td ng-click="activateUserDetail(user.username)">{{user.email}}</td>
           </tr>
-          <tr ng-if="!users.length && searchQuery">
+          <tr ng-if="!users.list.length && searchQuery">
             <td colspan="4">No results for search "{{searchQuery}}".</td>
           </tr>
         </tbody>
@@ -54,29 +81,9 @@
 
   </div>
 
-  <div class="col-sm-3">
-    
-    <div class="panel panel-default">
-      
-      <div class="panel-heading"><h3 class="panel-title">Filter</h3></div>
-
-      <div class="panel-body">
-        <ul class="list-unstyled">
-          <li ng-repeat="app in applications">
-            <label>
-              <input type="checkbox"> {{app.applicationName}}
-            </label>
-          </li>
-        </ul>
-      </div>
-
-    </div>
-
-  </div>
-
 </div>
 
-<!-- Modal -->
+<!-- Userdetail Modal -->
 <div class="modal fade" id="userdetail" tabindex="-1" role="dialog" aria-labelledby="userdetaillabel" aria-hidden="true" ng-controller="UserdetailCtrl">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -88,13 +95,15 @@
 
         <div class="form-horizontal">
           <div class="form-group" ng-repeat="property in editableUserProperties">
-            <label for="{{property}}" class="col-sm-2 control-label">{{dict[lang][property]}}</label>
+            <label for="{{property}}" class="col-sm-2 control-label">{{dict[conf.lang][property]}}</label>
             <div class="col-sm-10"><input type="text" class="form-control" id="{{property}}" ng-model="user.identity[property]"></div>
           </div>
         </div>
 
-        <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> Add role</button>
-        <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus"></span> Remove selected roles</button>
+        <button type="button" class="btn btn-default btn-sm" ng-click="addRoleForUsers()"><span class="glyphicon glyphicon-plus"></span> Add role</button>
+        <div class="btn-group" tooltip="{{rolesRequiredMessage}}">
+          <button type="button" class="btn btn-default btn-sm" ng-disabled="!rolesSelected"><span class="glyphicon glyphicon-minus"></span> Remove selected roles</button>
+        </div>
 
         <table edit-table elements="user.propsAndRoles" visible-fields="editableRoleProperties"></table>
 
@@ -102,6 +111,44 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Userdetail Modal -->
+<div class="modal fade" id="addrole" tabindex="-1" role="dialog" aria-labelledby="addrolelabel" aria-hidden="true" ng-controller="AddroleCtrl">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="addrolelabel">Add role</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label for="" class="col-sm-2 control-label">Role name:</label>
+            <div class="col-sm-10"><input type="text" class="form-control" id="{{property}}" ng-model="user.identity[property]"></div>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-sm-2 control-label">Role value:</label>
+            <div class="col-sm-10"><input type="text" class="form-control" id="{{property}}" ng-model="user.identity[property]"></div>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-sm-2 control-label">Organization:</label>
+            <div class="col-sm-10"><input type="text" class="form-control" id="{{property}}" ng-model="user.identity[property]"></div>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-sm-2 control-label">Application:</label>
+            <div class="col-sm-10"><input type="text" class="form-control" id="{{property}}" ng-model="user.identity[property]"></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Add role</button>
       </div>
     </div>
   </div>

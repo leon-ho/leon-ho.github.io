@@ -1,7 +1,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th></th>
+      <th><label><input tri-state-checkbox elements="elements" elements-selected="rolesSelected"></label></th>
       <th ng-repeat="field in visibleFields">{{field}}</th>
       <th></th>
     </tr>
@@ -21,11 +21,6 @@
     </tr>
     <tr ng-if="!elements.length">
       <td colspan="{{visibleFields.length+2}}">No roles yet.</td>
-    </tr>
-    <tr>
-      <td colspan="{{visibleFields.length+2}}">
-        <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> Add role</button>
-      </td>
     </tr>
   </tbody>
 </table>

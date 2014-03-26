@@ -1,6 +1,6 @@
 UseradminApp.controller('UserdetailCtrl', function($scope, $http, $routeParams) {
   
-  $scope.activeTab = 'user';
+  $scope.session.activeTab = 'user';
   $scope.editableUserProperties = [
     'firstName',
     'lastName',
@@ -25,6 +25,14 @@ UseradminApp.controller('UserdetailCtrl', function($scope, $http, $routeParams) 
       roleValue: 'Value'
     }
   } 
+
+  var noRolesSelectedMessage = 'Please select a role first!';
+  $scope.rolesRequiredMessage = noRolesSelectedMessage;
+
+  $scope.$watch('usersSelected', function(){
+    $scope.rolesRequiredMessage = ($scope.rolesSelected) ? '' : noRolesSelectedMessage;
+  });
+  
 
   function saveUser() {
     $http({

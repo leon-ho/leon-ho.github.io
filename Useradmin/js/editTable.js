@@ -5,7 +5,6 @@ UseradminApp.directive('editTable', function() {
     scope: { elements: '=', visibleFields: '=' },
     templateUrl: 'template/editTable.html',
     controller: function($scope, $element) {
-      console.log('something');
     }
   };
 });
