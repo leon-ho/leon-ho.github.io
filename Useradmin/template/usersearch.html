@@ -7,21 +7,21 @@
       <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="filterdropdown" data-toggle="dropdown">
         <span class="glyphicon glyphicon-filter"></span>
         Filter 
-        <span ng-show="(users.applications | filter:{isSelected: true}).length > 0">
-          ({{(users.applications | filter:{isSelected: true}).length}} active)
+        <span class="badge" ng-show="(users.applications | filter:{isSelected: true}).length > 0">
+          {{(users.applications | filter:{isSelected: true}).length}}
         </span>
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="filterdropdown">
         <li role="presentation" class="dropdown-header margin-top">Application</li>
         <li role="presentation" ng-repeat="app in users.applications">
-          <a role="menuitem" tabindex="-1" href="" ng-click="app.isSelected=!app.isSelected">
+          <a role="menuitem" tabindex="-1" href ng-click="app.isSelected=!app.isSelected">
             <span class="glyphicon" ng-class="{'glyphicon-check': app.isSelected, 'glyphicon-unchecked': !app.isSelected}"></span>
             {{app.applicationName}}
           </a>
         </li>
         <li role="presentation" class="divider"></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Clear all</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href ng-click="clearAllApps()">Clear all</a></li>
       </ul>
     </div>
   </div>
@@ -31,7 +31,7 @@
 
   <div class="col-sm-12">
 
-    <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> Add user</button>
+    <button class="btn btn-default btn-sm" ng-click="newUserDetail()"><span class="glyphicon glyphicon-plus"></span> Add user</button>
     <div class="btn-group" tooltip="{{users.requiredMessage}}">
       <button class="btn btn-default btn-sm" ng-disabled="!users.selected" ng-click="addRoleForUsers()">
         <span class="glyphicon glyphicon-plus"></span>
@@ -47,9 +47,7 @@
       </button>
     </div>
 
-    Selected users: {{(users.list | filter:{isSelected: true}).length}}
-
-    <div class="panel panel-default margin-top">
+    <div class="table-responsive margin-top">
 
       <table class="table">
         <thead>
@@ -104,8 +102,10 @@
         <div class="btn-group" tooltip="{{rolesRequiredMessage}}">
           <button type="button" class="btn btn-default btn-sm" ng-disabled="!rolesSelected"><span class="glyphicon glyphicon-minus"></span> Remove selected roles</button>
         </div>
-
-        <table edit-table elements="user.propsAndRoles" visible-fields="editableRoleProperties"></table>
+        
+        <div class="table-responsive margin-top">
+          <table edit-table elements="user.propsAndRoles" visible-fields="editableRoleProperties"></table>
+        </div>
 
       </div>
       <div class="modal-footer">
@@ -125,6 +125,12 @@
         <h4 class="modal-title" id="addrolelabel">Add role</h4>
       </div>
       <div class="modal-body">
+
+
+        Selected users: 
+        <span ng-repeat="user in users.list | filter:{isSelected: true}" class="label label-default">
+          {{user.firstName}} {{user.lastName}}
+        </span>
 
         <div class="form-horizontal">
           <div class="form-group">

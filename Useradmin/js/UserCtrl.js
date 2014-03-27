@@ -17,6 +17,13 @@ UseradminApp.controller('UserCtrl', function($scope, $http, $routeParams, Users)
     Users.search($scope.searchQuery);
   }
 
+  $scope.clearAllApps = function() {
+    console.log('Clear all');
+    angular.forEach( Users.applications, function(el, index) {
+      el.isSelected = false;
+    });
+  }
+
   $scope.getUserByUsername = function(username, callback) {
     console.log('Getting user by username:', username);
     $http({
@@ -36,6 +43,10 @@ UseradminApp.controller('UserCtrl', function($scope, $http, $routeParams, Users)
     });
   }
 
+  $scope.newUserDetail = function() {
+    $('#userdetail').modal('show');
+  }
+
   $scope.addRoleForUsers = function() {
     console.log('Adding roles for users...');
     $('#addrole').modal('show');
@@ -45,6 +56,9 @@ UseradminApp.controller('UserCtrl', function($scope, $http, $routeParams, Users)
     Users
     .search()
     .loadApplications(); 
+    $('.dropdown-menu').click(function(e) {
+      e.stopPropagation();
+    });
   }
 
   if(Users.list.length<1) {
