@@ -1,5 +1,7 @@
 
 body {
+	padding-bottom: 24em;	
+	background-color: #ddd;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -52,6 +54,11 @@ p {
     -o-transform: rotate(45deg); 
     transform:  rotate(45deg);
 }
+
+#project {
+	background-color: #fff;
+}
+
 #projectdescription {
 	margin: 6em auto;
 	position: relative;
@@ -278,10 +285,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aaaaaa', end
 
 #desk {
 	background: #3094b4;
+	overflow: hidden;
 }
 
 #footer {
-	background-color: #ddd;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: -1;
 }
 
 #footer .row {
