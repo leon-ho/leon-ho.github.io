@@ -9,7 +9,7 @@ UseradminApp.config(['$routeProvider',
       }).
       when('/application/', {
         templateUrl: 'template/applicationsearch.html',
-        controller: 'ApplicationsearchCtrl'
+        controller: 'ApplicationCtrl'
       }).
       when('/about/', {
         templateUrl: 'template/about.html',
@@ -30,11 +30,6 @@ UseradminApp.controller('MainCtrl', function($scope, $routeParams) {
     activeTab: 'user',
     foundUserList: []
   }
-});
-
-// TODO: Move to separate js-file
-UseradminApp.controller('ApplicationsearchCtrl', function($scope) {
-  $scope.session.activeTab = 'application';
 });
 
 // TODO: Move to separate js-file

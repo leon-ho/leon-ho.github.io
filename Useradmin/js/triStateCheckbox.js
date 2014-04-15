@@ -4,7 +4,7 @@ UseradminApp.directive('triStateCheckbox', function() {
     replace: true,
     scope: { elements: '=', elementsSelected: '=' },
     // IE9 doesn't trigger change-event when changing from indeterminate
-    template: '<input type="checkbox" ng-model="allChecked" ng-change="allCheckedChange()">',
+    template: '<input type="checkbox" ng-model="allChecked" ng-change="allCheckedChange()" ng-show="elements.length>0">',
     controller: function($scope, $element) {
       $scope.allCheckedChange = function() {
         angular.forEach($scope.elements, function(el, index){

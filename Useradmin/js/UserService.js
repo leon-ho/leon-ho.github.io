@@ -7,10 +7,12 @@ UseradminApp.service('Users', function($http){
 
 	this.search = function(searchQuery) {
 		console.log('Searching for users...');
+		searchQuery = searchQuery || '*';
 		var that = this;
 		$http({
 			method: 'GET',
-			url: 'json/users.json'
+			url: myHostJsonUserFind+searchQuery
+			//url: 'json/users.json',
 		}).success(function (data) {
 			that.list = data.result;
 		});

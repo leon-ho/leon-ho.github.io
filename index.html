@@ -1,10 +1,395 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Leon @ GitHub</title>
-	</head>
-	<body>
-		<h1>Hello World</h1>
-		<p>I'm hosted with GitHub Pages.</p>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Leon Ho: UX Designer @ Altran</title>
+	<link rel="stylesheet" href="css/foundation.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
+	<script src="js/vendor/custom.modernizr.js"></script>
+	<style>
+	</style>
+</head>
+<body ng-app="siteApp" ng-controller="mainController">
+
+	<div id="wall" style="overflow: hidden">
+		<div class="text-center">
+			<h6 style="text-transform: uppercase; letter-spacing: .2em;" class="colorwhite"><a href="#" id="leongamelink">Leon Ho</a> UX Designer @ <a href="http://www.altran.no"><img src="img/altranwhite.png" alt="ALTRAN" style="height: .75em; margin-bottom: .25em;"></a></h6>
+		</div>
+		<div class="row" style="position: relative;">
+			<div id="monitor" ng-class="{monitorsmaller: project.active.phoneimg}">
+				<div id="monitorscreen" ng-style="project.active && {'background-image':'url('+project.active.mainimg+')'}">
+					<div id="leongame" ng-hide="project.active">
+						<div id="bg3"></div>
+						<div id="bg2"></div>
+						<div id="pipe1"></div>
+						<div id="pipe2"></div>
+						<div id="bg1"></div>
+						<div id="sprite" data-saying=""></div>
+						<div class="text-center">
+							<h2 class="colorwhite pixelfont ">Leon Ho</h2>
+							<h4 class="colorwhite pixelfont subheader">UX Designer @ Altran</h4>
+							<p class="colorwhite pixelfont" style="margin-top: 1em;">Designer og frontend-utvikler med allsidig kompetanse.</p>
+							<p class="colorwhite pixelfont">
+								<img style="width: 5%" src="img/x.gif" alt="X" id="jumpkey"/> Jump
+								<img style="width: 5%" src="img/leftarrow.gif" alt="Left" id="leftkey"/>
+								<img style="width: 5%" src="img/leftarrow.gif" alt="Right" class="mirrored" id="rightkey"/> Move
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="phone" ng-class="{phoneactive: project.active.phoneimg}">
+				<div id="phonescreen" ng-style="project.active.phoneimg && {'background-image':'url('+project.active.phoneimg+')'}">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="large-8 large-centered columns small-12 arrowup" id="projectdescription">
+			<div ng-view class="view"></div>
+		</div>
+	</div>
+
+	<div id="desk">
+		<div class="row">
+			<div class="large-12 columns">
+				<ul class="small-block-grid-2 large-block-grid-4 text-center" id="projectlist">
+					<li ng-repeat="project in project.all">
+						<a href="#/project/{{$index}}" style="background-image: url({{project.mainimg}});">
+							<div>
+								<h5>{{project.title}}</h5>
+								<h6 class="subheader">{{project.client}}</h6>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div style="margin: 3em">
+		<div class="row">
+			<div class="large-6 large-centered columns">
+				<a href="mailto:leonho@altran.com"><div id="sprite2" style="margin: auto;" data-saying="Call me, maybe?"></div></a>
+				<h6 class="subheader text-center" style="margin: 2em">Leon jobber for Altran Norge som UX-designer og frontend-utvikler. </h6>
+			</div>
+		</div>
+	</div>
+
+	<div class="row" style="display: none;">
+		<div class="large-12 columns">
+			<form action="" id="skillsform">
+				<ul class="inline-list text-center" id="skillslist">
+					<li ng-repeat="skill in skills"><label class="button tiny secondary"><input type="checkbox" name="skill" value="{{skill.id}}"/> {{skill.label}}</label></li>
+				</ul>
+			</form>
+		</div>
+	</div>
+	
+	<script type="text/ng-template" id="project.html">
+
+		<h2>{{project.active.title}}</h2>
+		<h4 class="subheader">{{project.active.subtitle}}</h4>
+		{{project.active.description}}
+
+	</script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-animate.min.js"></script>
+
+
+	  <script>
+
+	  	var siteApp = angular.module('siteApp', ['ngRoute','ngAnimate']);
+
+	  	siteApp.config(['$routeProvider',
+	  		function($routeProvider) {
+	  			$routeProvider.
+	  			when('/project/:projectId', {
+	  				templateUrl: 'project.html',
+	  				controller: 'projectController'
+	  			}).
+	  			otherwise({
+	  				redirectTo: '/project'
+	  			});
+	  		}
+	  	]);
+
+	  	siteApp.controller('mainController', function($scope, $routeParams) {
+
+	  		var projectId = $routeParams.projectId;
+
+	  		$scope.project = {};
+
+	  		$scope.project.all = [
+				{
+					title: 'NKK-Utstilling',
+					subtitle: 'Interaksjonsdesign og illustrasjonsbilder',
+					description: '<p>Norsk Kennel Klub arrangerer mange hundeutstillinger i året - I dette prosjektet utforskes vi hvordan nettbrett kan brukes for å forenkle og forbedre resultat- og datainnsamlingen under disse utstillingene. </p>',
+					client: 'NKK',
+					mainimg: 'img/projects/nkk1.jpg',
+					thumbnail: 'img/projects/nkk1.jpg',
+					tags: 'illustration interactiondesign graphicaldesign'
+				},
+				{
+					title: 'CV-verktøy',
+					subtitle: 'CV-verktøy',
+					description: '<p>Som fersk konsulent vil ditt første oppdrag ofte være å lage en CV i bedriftens CV-mal - og hvis du ikke er ute i oppdrag, blir du kanskje bedt om å fikse noen andre CVer i samme slengen. Hvis man jobber i en bedrift lenge nok, vil det kanskje hende at de bestemmer seg for å bytte malen for å tilpasse deres nye grafiske profil. Da må flere titalls eller hundretalls CVer måtte oppdateres manuelt.</p><p>Et av mine første oppdrag var nettopp dette - Oppdater CVene for våre konsulenter. Fantes det ikke en bedre måte å gjøre dette på? Jeg tok dette opp, og fikk deretter oppdraget å utvikle en applikasjon som først og fremst skulle skille mellom <em>informasjon</em> og <em>presentasjon</em>.</p><p>Etter hvert som systemet vokste, fant vi det hensiktsmessig å legge til et forbedret søk, basert på Solr.</p>',
+					client: 'Altran',
+					mainimg: 'img/projects/acs.jpg',
+					phoneimg: 'img/projects/acsmobile.jpg',
+					thumbnail: 'img/projects/acs_s.png',
+					tags: 'django html css graphicaldesign interactiondesign javascript jquery'
+				},
+				{
+					title: 'NKK-Dogsearch',
+					subtitle: 'Frontendutvikling - Søk mot Solr-indeks',
+					description: '<p>Norsk Kennel Klub har kompleks informasjon om registrerte hunder i Norge. I 2013 ønsket startet arbeidet med å indeksere deres databaser slik at man lettere får tak i den informasjonen man er ute etter. I den forbindelse utviklet jeg et webbasert grensesnitt for å gjøre fasetterte søk i den nye Solr-indeksen.</p>',
+					client: 'NKK',
+					mainimg: 'img/projects/nkk2.jpg',
+					thumbnail: 'img/projects/nkk2.jpg',
+					tags: 'javascript jquery html css graphicaldesign interactiondesign'
+				},
+				{
+					title: 'Altran TV',
+					subtitle: 'HTML5 + Javascript Slideshow',
+					description: '<p>Et automatisk slideshow for Altran, laget i HTML, CSS-animasjoner og Javascript.</p>',
+					client: 'Altran',
+					mainimg: 'img/projects/altrantv.jpg',
+					phoneimg: 'img/projects/altrantvmobile.jpg',
+					thumbnail: 'img/projects/altrantv.jpg',
+					tags: 'javascript html css graphicaldesign'
+				}
+			];
+
+			if(projectId) $scope.project.active = $scope.project.all[projectId];
+
+			$scope.skills = [
+				{label: 'HTML5', id:'html'},
+				{label: 'CSS3', id:'css'},
+				{label: 'Javascript', id:'javascript'},
+				{label: 'JQuery', id:'jquery'},
+				{label: 'Interaksjonsdesign', id:'interactiondesign'},
+				{label: 'Illustrasjon', id:'illustration'},
+				{label: 'Django', id:'django'},
+				{label: 'Grafisk design', id:'graphicaldesign'}
+			];
+
+	  	});
+
+	  	siteApp.controller('projectController', function($scope, $routeParams) {
+	  		// Project
+	  		var projectId = $routeParams.projectId || 0;
+			$scope.project.active = $scope.project.all[projectId];
+			console.log(projectId);
+			console.log($scope.project);
+			console.log($scope.project.active);
+	  	});
+
+	 	var monitor = {
+	 		monitor: $('#monitor'),
+	 		monitorscreen: $('#monitorscreen'),
+	 		shrink: function() {
+	 			this.monitor.toggleClass('monitorsmaller', true);
+	 		},
+	 		grow: function() {
+	 			this.monitor.toggleClass('monitorsmaller', false);
+	 		},
+	 		setImg: function(img) {
+	 			$('#leongame').css('display','none');
+	  			this.monitorscreen.css('background-image', 'url('+img+')');
+	 		},
+	 		enableGame: function() {
+
+	 		}
+	 	}
+
+	  	var phone = {
+	  		phone: $('#phone'),
+	  		phonescreen: $('#phonescreen'),
+	  		show: function() {
+	  			this.phone.toggleClass('phoneactive', true);
+	  			monitor.shrink();
+	  		},
+	  		hide: function() {
+	  			this.phone.toggleClass('phoneactive', false);
+	  			monitor.grow();
+	  		},
+	  		setImg: function(img) {
+	  			this.phonescreen.css('background-image', 'url('+img+')');
+	  		}
+	  	};
+
+		(function(){
+			
+			$('#projectlist').on('click', 'am', function(e){
+			    $('html, body').animate( { scrollTop: $('#monitor').offset().top}, 'fast');
+				var index = $(this).data('index');
+				monitor.setImg(projects[index].mainimg);
+				$('#projectdescription').html( projectdescriptionrender( projects[index]) ).show();
+				if(projects[index].phoneimg){
+					phone.setImg(projects[index].phoneimg);
+					phone.show();
+				} else {
+					phone.hide();
+				}
+				e.preventDefault();
+				return false;
+			});
+
+
+			$('#leongamelink').click(function(){
+				$('#leongame').css('display', 'block');
+				e.preventDefault();
+				return false;
+			});
+
+			var scrollamount = 0;
+
+			if(screen.width>1024){
+			  	$('body').mousemove(function(e){
+			  		var docwidth = $(document).width();
+			  		scrollamount = e.pageX / docwidth;
+			  		$('#bg3').css('background-position', scrollamount*5 + "%");
+			  		$('#bg2').css('background-position', scrollamount*12 + "%");
+			  		$('#bg1').css('background-position', scrollamount*15 + "%");
+			  		$('#pipe1').css('margin-left', (scrollamount*15)+ "%");
+			  		$('#pipe2').css('margin-right', '-'+(scrollamount*15)+ "%");
+			  		$('#sprite').css('left', (scrollamount*15+sprite.left)+ "%");
+			  	});
+			}
+
+			var sprite = {
+				$: $('#sprite'),
+				left: 50,
+				speed: 0,
+				sayings: [
+					'Hey...',
+					'Something is not quite right...',
+					"I'm stuck!",
+					'Should not have had those extra burgers.',
+					'...',
+					'The view is pretty nice.'
+				],
+				sayingscounter: 0,
+				walkingInterval: {},
+				deceleratingInterval: {},
+				isJumping: false,
+				status: 'stopped' // walkingleft, walkingright
+			}
+
+		  	function jump(){
+				if(!sprite.isJumping){
+					console.log('Jump up, jump up, and get down!');
+					sprite.isJumping = true;
+			        sprite.$.addClass('jump').animate(
+			        	{bottom: '15%'}, 
+			        	200,
+			        	'linear',
+			        	function() {
+			        		sprite.$.animate({bottom: '0%'},200);
+			        	});
+			        setTimeout(function() { sprite.$.removeClass('jump'); }, 200);
+			        setTimeout(function() { sprite.isJumping = false; }, 400);
+				}
+		  	}
+
+		  	function walk(direction){
+		  		if(sprite.status != 'walking'+direction) {
+		  			console.log('Move it to the ' + direction + '!');
+			  		sprite.status = 'walking'+direction;
+			  		clearInterval( sprite.walkingInterval );
+			  		clearInterval( sprite.deceleratingInterval );
+			  		sprite.$.addClass('walking');
+		  			sprite.$.toggleClass('mirrored', direction=='left');
+		  			sprite.speed = (direction=='left') ? -0.5 : 0.5;
+			  		sprite.walkingInterval = setInterval( function() {
+			  			if( (sprite.left < 80 && direction == 'right') || (sprite.left > 10 && direction == 'left') ){
+				  			sprite.left+=sprite.speed;
+				  			if(sprite.left > 80) sprite.left=80;
+				  			if(sprite.left < 10) sprite.left=10;
+				  			$('#sprite').css('left', (scrollamount*15+sprite.left)+ "%");
+				  			if( Math.abs( sprite.speed ) < 2) sprite.speed *= 1.2;
+				  		}
+		  			},50);
+		  		}
+		  	}
+
+		  	function stopWalk(){
+		  		console.log('Stop! Hammer time!');
+		  		sprite.status = 'stopped';
+			  	clearInterval( sprite.deceleratingInterval );
+		  		sprite.deceleratingInterval = setInterval( function() {
+			  		sprite.speed *= 0.7;
+			  		if( Math.abs(sprite.speed) <= 0.5 ){
+			  			clearInterval( sprite.walkingInterval );
+			  			clearInterval( sprite.deceleratingInterval );
+			  		}
+		  		}, 50);
+		  		sprite.$.removeClass('walking');
+		  	}
+
+		  	$('#sprite').mouseover(function(){
+		  	});
+
+			$(document).on('keydown', function(e) {
+		        if (e.keyCode == 37) walk('left');
+		        if (e.keyCode == 88) jump();
+		        if (e.keyCode == 39) walk('right');
+			});
+
+			$(document).on('keyup', function(e) {
+			    if (e.keyCode == 37 || e.keyCode == 39 ) stopWalk();
+			});
+
+			$('#rightkey').on('mousedown mouseup', function(e){
+			    if (e.type == 'mousedown') { walk('right'); }
+			    else { stopWalk(); }
+			});
+			$('#leftkey').on('mousedown mouseup', function(e){
+			    if (e.type == 'mousedown') { walk('left'); }
+			    else { stopWalk(); }
+			});
+			$('#jumpkey').click(jump);
+
+
+		  	$('#skillslist input').change( function() {
+		  		filterProjects();
+		  		return false;
+		  	} );
+
+		  	function filterProjects() {
+		  		$('#projectlist li').each( function() {
+		  			var activeInputs = $('#skillsform').serializeArray();
+		  			var activeTags = [];
+		  			for( var i = 0; i<activeInputs.length; i++ ) {
+		  				activeTags.push(activeInputs[i].value);
+		  			}
+		  			var tags = $(this).data('tags').split(' ');
+		  			if( arrayIntersect(activeTags, tags).length > 0 || activeTags.length == 0 ) {
+		  				$(this).show();
+		  			} else {
+		  				$(this).hide();
+		  			}
+		  		});
+		  	}
+
+		  	function arrayIntersect(a, b) {
+			    return $.grep(a, function(i) {
+			        return $.inArray(i, b) > -1;
+			    });
+			};
+
+		}());
+	  </script>
+  
 	</body>
 </html>
