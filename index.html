@@ -58,11 +58,11 @@
 
 	<div id="desk">
 		<ul class="small-block-grid-2 large-block-grid-4 text-center" id="projectlist">
-			<li ng-repeat="project in project.all">
-				<a href="#/project/{{$index}}" style="background-image: url({{project.mainimg}});">
+			<li ng-repeat="p in project.all">
+				<a href="#/project/{{$index}}" ng-style="p.mainimg && {'background-image':'url('+p.mainimg+')'}">
 					<div>
-						<h4 class="colorwhite">{{project.title}}</h5>
-						<h5 class="subheader colorwhite">{{project.client}}</h6>
+						<h4 class="colorwhite">{{p.title}}</h5>
+						<h5 class="subheader colorwhite">{{p.client}}</h6>
 					</div>
 				</a>
 			</li>
@@ -89,11 +89,9 @@
 	</div>
 	
 	<script type="text/ng-template" id="project.html">
-
 		<h2>{{project.active.title}}</h2>
 		<h4 class="subheader">{{project.active.subtitle}}</h4>
 		<p ng-repeat="p in project.active.description">{{p}}</p>
-
 	</script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
@@ -168,7 +166,12 @@
 				}
 			];
 
-			if(projectId) $scope.project.active = $scope.project.all[projectId];
+			if(projectId){
+				$scope.project.active = $scope.project.all[projectId];
+			} else {
+				$scope.project.active = undefined;
+				console.log('No project selected.');
+			}
 
 			$scope.skills = [
 				{label: 'HTML5', id:'html'},
@@ -194,13 +197,6 @@
 			$('#projectlist').on('click', 'a', function(e){
 				console.log('Scroll');
 			    $('html, body').animate( { scrollTop: $('#monitor').offset().top}, 'fast');
-			});
-
-
-			$('#leongamelink').click(function(){
-				$('#leongame').css('display', 'block');
-				e.preventDefault();
-				return false;
 			});
 
 			var scrollamount = 0;

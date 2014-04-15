@@ -88,127 +88,6 @@ p {
 	-webkit-transform: scale(1.05);
 	*/
 }
-
-/* Animated parallax bg */
-#leongame {
-	background-color: #55b9d9; /*#5D94FB;*/
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-}
-#bg1, #bg2, #bg3 {
-	position: absolute; 
-	width: 100%; 
-	background-size: contain;
-}
-#bg1 {
-	background-repeat: repeat-x;
-	background-image: url(../img/groundtile.gif); 
-	padding-bottom: 5%;
-	bottom: 0; 
-}
-#bg2 {
-	background-repeat: no-repeat;
-	background-image: url(../img/hilltile.gif); 
-	padding-bottom: 15%;
-	margin-bottom: 5%;
-	left: 10%;
-	bottom: 0; 
-}
-#bg3 {
-	background-repeat: no-repeat;
-	background-image: url(../img/cloudtile.gif); 
-	padding-bottom: 10%;
-	margin-top: 20%;
-	margin-right: 15%;
-	top: 0;
-	left: 80%;
-}
-#pipe1, #pipe2 {
-	position: absolute; 
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-image: url(../img/pipe.gif); 
-	padding-bottom: 15%;
-	width: 10%;
-	margin-bottom: 5%;
-	bottom: 0;
-	left: 0;
-}
-#pipe2 {
-	left: auto;
-	margin-bottom: 0;
-	right: 5%;
-}
-#sprite, #sprite2 {
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: 0 0;
-	background-image: url(../img/leonsprite.gif); 
-}
-#sprite2 {
-	width: 48px;
-	height: 144px;
-}
-#sprite {
-	padding-bottom: 15%;
-	width: 5%;
-	position: absolute;
-	bottom: 0;
-	margin-bottom: 5%;
-	margin-right: 15%;
-	left: 50%;
-}
-#sprite:before {
-	content: attr(data-saying);
-	font-family: 'Press Start 2P', fixedsys, sans-serif;
-	font-size: 24px;
-	position: absolute;
-}
-#sprite2:hover:before {
-	content: attr(data-saying);
-	font-family: 'Press Start 2P', fixedsys, sans-serif;
-	font-size: 16px;
-	color: #777;
-	position: absolute;
-}
-		.mirrored {
-		    -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
-		    -moz-transform: matrix(-1, 0, 0, 1, 0, 0);
-		    -o-transform: matrix(-1, 0, 0, 1, 0, 0);
-		    transform: matrix(-1, 0, 0, 1, 0, 0);
-		}
-
-		.walking, #sprite2:hover {
-			-webkit-animation: walking .2s steps(3) infinite alternate; 
-			-moz-animation:    walking .2s steps(3) infinite alternate; 
-			-o-animation:      walking .2s steps(3) infinite alternate; 
-			animation:         walking .2s steps(3) infinite alternate; 
-		}
-
-		@-webkit-keyframes walking {
-		  0%   { background-position: 50% 0; }
-		  100% { background-position: 125% 0; }
-		}
-		@-moz-keyframes walking {
-		  0%   { background-position: 50% 0; }
-		  100% { background-position: 125% 0; }
-		}
-		@-o-keyframes walking {
-		  0%   { background-position: 50% 0; }
-		  100% { background-position: 125% 0; }
-		}
-		@keyframes walking {
-		  0%   { background-position: 50% 0; }
-		  100% { background-position: 125% 0; }
-		}
-		
-		.jump {
-			background-position: 25% 0 !important;
-		}
-
 #wall {
 	background: #3094b4; 
 	background-size: cover; 
@@ -236,40 +115,63 @@ p {
 	transition: margin-right 1s;
 }
 
+/* MAC BODY */
 #monitor:after {
 	content: '';
 	display: block;
 	position: absolute;
-	bottom: 0;
+	bottom: -2%;
 	left: -5%;
 	right: -5%;
 	height: 5%;
-	border-bottom-left-radius: 1% 40%;
-	border-bottom-right-radius: 1% 40%;
-	
-	background: #dddddd; /* Old browsers */
-	background: -moz-linear-gradient(top,  #dddddd 50%, #898989 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(50%,#dddddd), color-stop(100%,#898989)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #dddddd 50%,#898989 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #dddddd 50%,#898989 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #dddddd 50%,#898989 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  #dddddd 50%,#898989 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#898989',GradientType=0 ); /* IE6-8 */
+	border-bottom-left-radius: 10% 40%;
+	border-bottom-right-radius: 10% 40%;
+
+	background: #ccc;
+background: -moz-linear-gradient(top,  rgba(175,175,175,0) 60%, rgba(175,175,175,1) 61%, rgba(58,58,58,1) 100%), -moz-linear-gradient(left,  rgba(119,119,119,1) 0%, rgba(204,204,204,1) 1%, rgba(255,255,255,1) 2%, rgba(153,153,153,1) 4%, rgba(221,221,221,1) 10%, rgba(221,221,221,1) 90%, rgba(153,153,153,1) 96%, rgba(255,255,255,1) 98%, rgba(204,204,204,1) 99%, rgba(119,119,119,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(60%,rgba(175,175,175,0)), color-stop(61%,rgba(175,175,175,1)), color-stop(100%,rgba(58,58,58,1))), -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(119,119,119,1)), color-stop(1%,rgba(204,204,204,1)), color-stop(2%,rgba(255,255,255,1)), color-stop(4%,rgba(153,153,153,1)), color-stop(10%,rgba(221,221,221,1)), color-stop(90%,rgba(221,221,221,1)), color-stop(96%,rgba(153,153,153,1)), color-stop(98%,rgba(255,255,255,1)), color-stop(99%,rgba(204,204,204,1)), color-stop(100%,rgba(119,119,119,1)));
+background: -webkit-linear-gradient(top,  rgba(175,175,175,0) 60%,rgba(175,175,175,1) 61%,rgba(58,58,58,1) 100%), -webkit-linear-gradient(left,  rgba(119,119,119,1) 0%,rgba(204,204,204,1) 1%,rgba(255,255,255,1) 2%,rgba(153,153,153,1) 4%,rgba(221,221,221,1) 10%,rgba(221,221,221,1) 90%,rgba(153,153,153,1) 96%,rgba(255,255,255,1) 98%,rgba(204,204,204,1) 99%,rgba(119,119,119,1) 100%);
+background: -o-linear-gradient(top,  rgba(175,175,175,0) 60%,rgba(175,175,175,1) 61%,rgba(58,58,58,1) 100%), -o-linear-gradient(left,  rgba(119,119,119,1) 0%,rgba(204,204,204,1) 1%,rgba(255,255,255,1) 2%,rgba(153,153,153,1) 4%,rgba(221,221,221,1) 10%,rgba(221,221,221,1) 90%,rgba(153,153,153,1) 96%,rgba(255,255,255,1) 98%,rgba(204,204,204,1) 99%,rgba(119,119,119,1) 100%);
+background: -ms-linear-gradient(top,  rgba(175,175,175,0) 60%,rgba(175,175,175,1) 61%,rgba(58,58,58,1) 100%), -ms-linear-gradient(left,  rgba(119,119,119,1) 0%,rgba(204,204,204,1) 1%,rgba(255,255,255,1) 2%,rgba(153,153,153,1) 4%,rgba(221,221,221,1) 10%,rgba(221,221,221,1) 90%,rgba(153,153,153,1) 96%,rgba(255,255,255,1) 98%,rgba(204,204,204,1) 99%,rgba(119,119,119,1) 100%);
+background: linear-gradient(to bottom,  rgba(175,175,175,0) 60%,rgba(175,175,175,1) 61%,rgba(58,58,58,1) 100%), linear-gradient(to right,  rgba(119,119,119,1) 0%,rgba(204,204,204,1) 1%,rgba(255,255,255,1) 2%,rgba(153,153,153,1) 4%,rgba(221,221,221,1) 10%,rgba(221,221,221,1) 90%,rgba(153,153,153,1) 96%,rgba(255,255,255,1) 98%,rgba(204,204,204,1) 99%,rgba(119,119,119,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00afafaf', endColorstr='#3a3a3a',GradientType=0 );
+
+	/* 
+	Bottom: 
+		http://www.colorzilla.com/gradient-editor/#afafaf+61,3a3a3a+100&0+60,0+60,1+61;Custom
+	Wide:
+		http://www.colorzilla.com/gradient-editor/#777777+0,cccccc+1,ffffff+2,999999+4,dddddd+10,dddddd+90,999999+96,ffffff+98,cccccc+99,777777+100;Custom 
+	*/
 }
 
+
+/* LID-GRIP */
 #monitor:before {
 	content: '';
 	display: block;
 	position: absolute;
-	bottom: 3%;
+	bottom: 1%;
 	left: 40%;
 	right: 40%;
 	height: 2%;
 	z-index: 10;
-	background: rgba(255,255,255,0.5); 
 	border-bottom-left-radius: 2% 80%;
 	border-bottom-right-radius: 2% 80%;
+
+background: #eee;
+
+background: -moz-linear-gradient(left,  #888 0%, #ccc 15%, #ccc 85%, #888 100%);
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,#888), color-stop(15%,#ccc), color-stop(85%,#ccc), color-stop(100%,#888));
+background: -webkit-linear-gradient(left,  #888 0%,#ccc 15%,#ccc 85%,#888 100%);
+background: -o-linear-gradient(left,  #888 0%,#ccc 15%,#ccc 85%,#888 100%);
+background: -ms-linear-gradient(left,  #888 0%,#ccc 15%,#ccc 85%,#888 100%);
+background: linear-gradient(to right,  #888 0%,#ccc 15%,#ccc 85%,#888 100%);
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aaaaaa', endColorstr='#aaaaaa',GradientType=1 );
+
+
 }
+/* Lid-grip gradient http://www.colorzilla.com/gradient-editor/#aaaaaa+0,eaeaea+15,eaeaea+85,aaaaaa+100;Custom */
 
 #monitorscreen {
 	position: relative;
@@ -286,7 +188,11 @@ p {
 }
 
 @media all and (min-width: 1136px) {
-	#monitor, #phone {
+	/* Additional styling on screen with higher resolution */
+	#phone {
+		box-shadow: 0 1em 2.5em 0 rgba(0,0,0,0.5), 0 1px 1px 1px rgba(255,255,255,0.5) inset;
+	}
+	#monitor {
 		box-shadow: 0 1em 2.5em 0 rgba(0,0,0,0.5);
 	}
 }
@@ -305,7 +211,8 @@ p {
 	border-top-right-radius: 		5% 3%;
 	border-bottom-left-radius: 		5% 3%;
 	border-bottom-right-radius: 	5% 3%;
-	background: #555;
+
+	background: #333;
 	transition: right 1s;
 }
 
@@ -328,8 +235,6 @@ p {
 	border-top-right-radius: 		5% 3%;
 	border-bottom-left-radius: 		5% 3%;
 	border-bottom-right-radius: 	5% 3%;
-
-	box-shadow: 0 2px 3px 0 #f00 inset;
 
 	background: #111;
 }
@@ -385,20 +290,141 @@ p {
 }
 
 /* NG ANIMATIONS */
-.view.ng-enter,
-.view.ng-leave {
-  -webkit-transition:0.5s linear all;
-  transition:0.5s linear all;
-}
+		.view.ng-enter,
+		.view.ng-leave {
+		  -webkit-transition:0.5s linear all;
+		  transition:0.5s linear all;
+		}
 
-.view.ng-enter { opacity: 0; }
-.view.ng-enter.ng-enter-active { opacity: 1; }
+		.view.ng-enter { opacity: 0; }
+		.view.ng-enter.ng-enter-active { opacity: 1; }
 
-.view.ng-leave { 
-	opacity: 1; 
-	position: absolute;
-}
-.view.ng-leave.ng-leave-active { opacity: 0; }
+		.view.ng-leave { 
+			opacity: 1; 
+			position: absolute;
+		}
+		.view.ng-leave.ng-leave-active { opacity: 0; }
+
+
+/* GAME-STUFF */
+		#leongame {
+			background-color: #55b9d9; /*#5D94FB;*/
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+		#bg1, #bg2, #bg3 {
+			position: absolute; 
+			width: 100%; 
+			background-size: contain;
+		}
+		#bg1 {
+			background-repeat: repeat-x;
+			background-image: url(../img/groundtile.gif); 
+			padding-bottom: 5%;
+			bottom: 0; 
+		}
+		#bg2 {
+			background-repeat: no-repeat;
+			background-image: url(../img/hilltile.gif); 
+			padding-bottom: 15%;
+			margin-bottom: 5%;
+			left: 10%;
+			bottom: 0; 
+		}
+		#bg3 {
+			background-repeat: no-repeat;
+			background-image: url(../img/cloudtile.gif); 
+			padding-bottom: 10%;
+			margin-top: 20%;
+			margin-right: 15%;
+			top: 0;
+			left: 80%;
+		}
+		#pipe1, #pipe2 {
+			position: absolute; 
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-image: url(../img/pipe.gif); 
+			padding-bottom: 15%;
+			width: 10%;
+			margin-bottom: 5%;
+			bottom: 0;
+			left: 0;
+		}
+		#pipe2 {
+			left: auto;
+			margin-bottom: 0;
+			right: 5%;
+		}
+		#sprite, #sprite2 {
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: 0 0;
+			background-image: url(../img/leonsprite.gif); 
+		}
+		#sprite2 {
+			width: 48px;
+			height: 144px;
+		}
+		#sprite {
+			padding-bottom: 15%;
+			width: 5%;
+			position: absolute;
+			bottom: 0;
+			margin-bottom: 5%;
+			margin-right: 15%;
+			left: 50%;
+		}
+		#sprite:before {
+			content: attr(data-saying);
+			font-family: 'Press Start 2P', fixedsys, sans-serif;
+			font-size: 24px;
+			position: absolute;
+		}
+		#sprite2:hover:before {
+			content: attr(data-saying);
+			font-family: 'Press Start 2P', fixedsys, sans-serif;
+			font-size: 16px;
+			color: #777;
+			position: absolute;
+		}
+		.mirrored {
+		    -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
+		    -moz-transform: matrix(-1, 0, 0, 1, 0, 0);
+		    -o-transform: matrix(-1, 0, 0, 1, 0, 0);
+		    transform: matrix(-1, 0, 0, 1, 0, 0);
+		}
+
+		.walking, #sprite2:hover {
+			-webkit-animation: walking .2s steps(3) infinite alternate; 
+			-moz-animation:    walking .2s steps(3) infinite alternate; 
+			-o-animation:      walking .2s steps(3) infinite alternate; 
+			animation:         walking .2s steps(3) infinite alternate; 
+		}
+
+		@-webkit-keyframes walking {
+		  0%   { background-position: 50% 0; }
+		  100% { background-position: 125% 0; }
+		}
+		@-moz-keyframes walking {
+		  0%   { background-position: 50% 0; }
+		  100% { background-position: 125% 0; }
+		}
+		@-o-keyframes walking {
+		  0%   { background-position: 50% 0; }
+		  100% { background-position: 125% 0; }
+		}
+		@keyframes walking {
+		  0%   { background-position: 50% 0; }
+		  100% { background-position: 125% 0; }
+		}
+		
+		.jump {
+			background-position: 25% 0 !important;
+		}
 
 /* 
 	lime: 		#bdd600 rgb(187, 207, 6);
