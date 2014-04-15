@@ -6,6 +6,10 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: 'Open Sans', sans-serif;
 }
 
+p {
+	line-height: 2em;
+}
+
 /* Generic classes */
 .brighter {
 	color: #aaa;
@@ -39,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
 	display: block;
 	position: absolute;
 	background: white;
-	top: -3em;
+	top: -7em;
 	left: 50%;
 	width: 2em;
 	height: 2em;
@@ -49,8 +53,12 @@ h1, h2, h3, h4, h5, h6 {
     transform:  rotate(45deg);
 }
 #projectdescription {
-	margin: 2em auto;
+	margin: 6em auto;
 	position: relative;
+}
+
+#projectlist li {
+	padding: 0;
 }
 
 #projectlist a {
@@ -62,17 +70,23 @@ h1, h2, h3, h4, h5, h6 {
 	display: block;
 	transition: all .3s;
 }
-#projectlist a:hover {
-	transform: scale(1.05);
-	-ms-transform: scale(1.05); /* IE 9 */
-	-webkit-transform: scale(1.05); /* Safari and Chrome */
-}
 #projectlist a div {
-	background: rgba(255,255,255,0.8);
+	background: rgba(48, 148, 180, 0.9);
 	position: absolute;
 	bottom: 0;
 	left: 0;
 	right: 0;
+	top: 0;
+	transition: all .3s;
+	padding-top: 30%;
+}
+#projectlist a div:hover {
+	background: rgba(239, 171, 0, 0.9);
+	/*
+	transform: scale(1.05);
+	-ms-transform: scale(1.05);
+	-webkit-transform: scale(1.05);
+	*/
 }
 
 /* Animated parallax bg */
@@ -196,7 +210,7 @@ h1, h2, h3, h4, h5, h6 {
 		}
 
 #wall {
-	background: #3094b4; /* lime: #bdd600; blue: #3094b4 : yellow:#efab00;; purple: #8e258c RED #cb0044*/ 
+	background: #3094b4; 
 	background-size: cover; 
 	padding: 2em; 
 	position: relative;
@@ -358,8 +372,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #desk {
-	padding: 1em 0 0 0;
-	background: #ddd;
+	background: #3094b4;
+}
+
+#footer {
+	background-color: #ddd;
+}
+
+#footer .row {
+	padding-top: 5em;
+	padding-bottom: 5em;
 }
 
 /* NG ANIMATIONS */
@@ -372,5 +394,16 @@ h1, h2, h3, h4, h5, h6 {
 .view.ng-enter { opacity: 0; }
 .view.ng-enter.ng-enter-active { opacity: 1; }
 
-.view.ng-leave { opacity: 1; }
+.view.ng-leave { 
+	opacity: 1; 
+	position: absolute;
+}
 .view.ng-leave.ng-leave-active { opacity: 0; }
+
+/* 
+	lime: 		#bdd600 rgb(187, 207, 6);
+	blue: 		#3094b4 rgb(48, 148, 180);
+	yellow:		#efab00 rgb(239, 171, 0);
+	purple: 	#8e258c rgb(142, 37, 140);
+	red: 		#cb0044 rgb(203, 0, 68);
+*/ 

@@ -57,23 +57,19 @@
 	</div>
 
 	<div id="desk">
-		<div class="row">
-			<div class="large-12 columns">
-				<ul class="small-block-grid-2 large-block-grid-4 text-center" id="projectlist">
-					<li ng-repeat="project in project.all">
-						<a href="#/project/{{$index}}" style="background-image: url({{project.mainimg}});">
-							<div>
-								<h5>{{project.title}}</h5>
-								<h6 class="subheader">{{project.client}}</h6>
-							</div>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+		<ul class="small-block-grid-2 large-block-grid-4 text-center" id="projectlist">
+			<li ng-repeat="project in project.all">
+				<a href="#/project/{{$index}}" style="background-image: url({{project.mainimg}});">
+					<div>
+						<h4 class="colorwhite">{{project.title}}</h5>
+						<h5 class="subheader colorwhite">{{project.client}}</h6>
+					</div>
+				</a>
+			</li>
+		</ul>
 	</div>
 
-	<div style="margin: 3em">
+	<div id="footer">
 		<div class="row">
 			<div class="large-6 large-centered columns">
 				<a href="mailto:leonho@altran.com"><div id="sprite2" style="margin: auto;" data-saying="Call me, maybe?"></div></a>
@@ -96,7 +92,7 @@
 
 		<h2>{{project.active.title}}</h2>
 		<h4 class="subheader">{{project.active.subtitle}}</h4>
-		{{project.active.description}}
+		<p ng-repeat="p in project.active.description">{{p}}</p>
 
 	</script>
 
@@ -131,18 +127,20 @@
 
 	  		$scope.project.all = [
 				{
-					title: 'NKK-Utstilling',
+					title: 'Utstillingsapp',
 					subtitle: 'Interaksjonsdesign og illustrasjonsbilder',
-					description: '<p>Norsk Kennel Klub arrangerer mange hundeutstillinger i året - I dette prosjektet utforskes vi hvordan nettbrett kan brukes for å forenkle og forbedre resultat- og datainnsamlingen under disse utstillingene. </p>',
+					description: ['Norsk Kennel Klub arrangerer mange hundeutstillinger i året - I dette prosjektet utforskes vi hvordan nettbrett kan brukes for å forenkle og forbedre resultat- og datainnsamlingen under disse utstillingene.'],
 					client: 'NKK',
 					mainimg: 'img/projects/nkk1.jpg',
 					thumbnail: 'img/projects/nkk1.jpg',
 					tags: 'illustration interactiondesign graphicaldesign'
 				},
 				{
-					title: 'CV-verktøy',
-					subtitle: 'CV-verktøy',
-					description: '<p>Som fersk konsulent vil ditt første oppdrag ofte være å lage en CV i bedriftens CV-mal - og hvis du ikke er ute i oppdrag, blir du kanskje bedt om å fikse noen andre CVer i samme slengen. Hvis man jobber i en bedrift lenge nok, vil det kanskje hende at de bestemmer seg for å bytte malen for å tilpasse deres nye grafiske profil. Da må flere titalls eller hundretalls CVer måtte oppdateres manuelt.</p><p>Et av mine første oppdrag var nettopp dette - Oppdater CVene for våre konsulenter. Fantes det ikke en bedre måte å gjøre dette på? Jeg tok dette opp, og fikk deretter oppdraget å utvikle en applikasjon som først og fremst skulle skille mellom <em>informasjon</em> og <em>presentasjon</em>.</p><p>Etter hvert som systemet vokste, fant vi det hensiktsmessig å legge til et forbedret søk, basert på Solr.</p>',
+					title: 'ACS',
+					subtitle: 'Altran Competence System for konsulent-CVer',
+					description: [
+						'Altran har i Norge og Sverige til sammen fler enn 400 ansatte. Som en bedrift med fokus på konsulentvirksomhet, er det svært viktig at informasjon om konsulentenes erfaringer er oppdatert og lett tilgjengelig for salg og videreutvikling. Tidligere har dette vært lagret i enkeltstående CV-dokumenter og diverse kompetansematriser, men dette har vært vanskelig å gjenbruke, oppdatere og holde organisert.',
+						'Jeg vært utviklingsansvarlig for det nye salg og kompetansesystemet for Altran. I dette prosjektet har jeg over tid hatt ansvar for både utvikling, interaksjonsdesign, grafisk design og drift. Tjenesten kjører på Microsofts skytjeneste Azure, og ble i 2013 rullet ut for Altrans kontorer i Stockholm, Gothenburg, Malmö, Borlänge og Karlstad, i tillegg til Oslo.'],
 					client: 'Altran',
 					mainimg: 'img/projects/acs.jpg',
 					phoneimg: 'img/projects/acsmobile.jpg',
@@ -150,9 +148,9 @@
 					tags: 'django html css graphicaldesign interactiondesign javascript jquery'
 				},
 				{
-					title: 'NKK-Dogsearch',
+					title: 'Dogsearch',
 					subtitle: 'Frontendutvikling - Søk mot Solr-indeks',
-					description: '<p>Norsk Kennel Klub har kompleks informasjon om registrerte hunder i Norge. I 2013 ønsket startet arbeidet med å indeksere deres databaser slik at man lettere får tak i den informasjonen man er ute etter. I den forbindelse utviklet jeg et webbasert grensesnitt for å gjøre fasetterte søk i den nye Solr-indeksen.</p>',
+					description: ['Norsk Kennel Klub har kompleks informasjon om registrerte hunder i Norge. I 2013 ønsket startet arbeidet med å indeksere deres databaser slik at man lettere får tak i den informasjonen man er ute etter. I den forbindelse utviklet jeg et webbasert grensesnitt for å gjøre fasetterte søk i den nye Solr-indeksen.'],
 					client: 'NKK',
 					mainimg: 'img/projects/nkk2.jpg',
 					thumbnail: 'img/projects/nkk2.jpg',
@@ -161,7 +159,7 @@
 				{
 					title: 'Altran TV',
 					subtitle: 'HTML5 + Javascript Slideshow',
-					description: '<p>Et automatisk slideshow for Altran, laget i HTML, CSS-animasjoner og Javascript.</p>',
+					description: ['Et automatisk slideshow for Altran, laget i HTML, CSS-animasjoner og Javascript.'],
 					client: 'Altran',
 					mainimg: 'img/projects/altrantv.jpg',
 					phoneimg: 'img/projects/altrantvmobile.jpg',
@@ -189,60 +187,13 @@
 	  		// Project
 	  		var projectId = $routeParams.projectId || 0;
 			$scope.project.active = $scope.project.all[projectId];
-			console.log(projectId);
-			console.log($scope.project);
-			console.log($scope.project.active);
 	  	});
-
-	 	var monitor = {
-	 		monitor: $('#monitor'),
-	 		monitorscreen: $('#monitorscreen'),
-	 		shrink: function() {
-	 			this.monitor.toggleClass('monitorsmaller', true);
-	 		},
-	 		grow: function() {
-	 			this.monitor.toggleClass('monitorsmaller', false);
-	 		},
-	 		setImg: function(img) {
-	 			$('#leongame').css('display','none');
-	  			this.monitorscreen.css('background-image', 'url('+img+')');
-	 		},
-	 		enableGame: function() {
-
-	 		}
-	 	}
-
-	  	var phone = {
-	  		phone: $('#phone'),
-	  		phonescreen: $('#phonescreen'),
-	  		show: function() {
-	  			this.phone.toggleClass('phoneactive', true);
-	  			monitor.shrink();
-	  		},
-	  		hide: function() {
-	  			this.phone.toggleClass('phoneactive', false);
-	  			monitor.grow();
-	  		},
-	  		setImg: function(img) {
-	  			this.phonescreen.css('background-image', 'url('+img+')');
-	  		}
-	  	};
 
 		(function(){
 			
-			$('#projectlist').on('click', 'am', function(e){
+			$('#projectlist').on('click', 'a', function(e){
+				console.log('Scroll');
 			    $('html, body').animate( { scrollTop: $('#monitor').offset().top}, 'fast');
-				var index = $(this).data('index');
-				monitor.setImg(projects[index].mainimg);
-				$('#projectdescription').html( projectdescriptionrender( projects[index]) ).show();
-				if(projects[index].phoneimg){
-					phone.setImg(projects[index].phoneimg);
-					phone.show();
-				} else {
-					phone.hide();
-				}
-				e.preventDefault();
-				return false;
 			});
 
 
