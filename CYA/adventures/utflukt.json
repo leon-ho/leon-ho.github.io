@@ -1,0 +1,273 @@
+{
+  "title": "Utflukt",
+  "description": "Vil dere overleve turen hjem?",
+  "scenes": {
+
+      "START": {
+        "text": [
+          "Det er sent på kvelden, og dere er på vei hjem fra utflukt. Det har allerede blitt mørkt og kaldt ute - vinden uler og stormen pisker regnet hardt mot vinduene på minibussen til Yibo.",
+          "Plutselig hører dere et smell, og dere kjenner lukten av svidd jern og diesel. Den trauste Toyotaen bremser sakte opp til dere stopper på en stille og forlatt del av E18.",
+          "'Jeg prøvde å ringe etter bilberging, men det er ikke noe signal her,'' sier Yibo."
+          ],
+        "ambientNoise": true,
+        "choices": [
+          {"text":"Se dere rundt", "destination": "minibuss"}
+        ]
+      },
+
+      "minibuss": {
+        "text": [
+          "Regnet pøser ned og vinden uler mens dere går rundt bilen for å se dere rundt. Minibussen har stanset på flatmark. Foran og bak dere fortsetter veien i mange mil, men det finnes ingen skilt eller bygninger langs veien så langt øyet å se.",
+          "På høyre side av veien er det en slak fjellskrent tett dekket av høye furutrær. Bak trærne skimter dere et hvitt hus på toppen av bakken med et svakt blafrende lys i vinduet.",
+          "På venstre side av veien er det et stort jorde, og midt på jordet står det et lite rødt hus, som ser ut til å være falleferdig og ubebodd, men ved siden av er det noe som ser ut som en mobilmast koblet til en del store ledninger fra strømmastene som står på rekke over jordet.",
+          "Motoren på minibussen ryker, og lukten av brent maskineri begynner å stikke i nesa."
+          ],
+        "ambientNoise": true,
+        "choices": [
+          {"text":"Gå til det hvite huset", "destination": "hvitthus"},
+          {"text":"Gå til det røde huset", "destination": "rødthus"}
+        ]
+      },
+
+      "hvitthus": {
+        "text": [
+          "'Jeg blir her ved bilen i tilfelle noen kjører forbi, dere kan gå opp til det hvite huset og se om dere får lånt en telefon,' sier Yibo, 'kanskje dere kan spørre om vi kan få noen vafler når dere først er der.'",
+          "Dere begynner å gå opp mot det hvite huset. Fjellskrenten er mye brattere enn dere trodde, og regnet har gjort stien glatt. Flere ganger er det nesten så dere sklir ned, og enkelte partier er så bratte at dere nesten må kravle på alle fire.",
+          "Omsider kommer dere fram til det hvite huset, søkkvåte og slitne. Dere børster vekk barnåler, gjørme og bark fra armer og bein.",
+          "'Håper virkelig det er noen hjemme ass.'"
+          ],
+        "ambientNoise": true,
+        "choices": [
+          {"text":"Bank på døren", "destination": "hvitthusbank"}
+        ]
+      },
+
+      "hvitthusbank": {
+        "text": [
+          "Dere banker på, og venter.",
+          "Noen stearinlys i vinduet vitner om at noen antakelig er hjemme, men dere hører ingen lyder fra huset.",
+          "Nå som dere har stoppet opp, begynner dere å kjenne den bitende kulden."
+          ],
+        "ambientNoise": true,
+        "choices": [
+          {"text":"Gå tilbake til minibussen", "destination": "hvitthusbank2"},
+          {"text":"Gå rundt huset for å se dere om", "destination": "svarthus"}
+        ]
+      },
+
+      "hvitthusbank2": {
+        "text": [
+          "'Ingen svarer, tror det er bedre å gå tilbake. Kanskje det er bedre å gå til det røde huset?'",
+          "Regnet fortsetter å pøse ned, og dere snur dere for å gå tilbake.",
+          "Fra fjelltoppen dere står på, ser dere tydelig minibussen til Yibo nedenfor. Det ryker av motoren, og mest sannsynlig blir det ikke mulig å starte den igjen på en stund.",
+          "'Kanskje vi har mobilsignal her oppe?'",
+          "Dere trekker frem mobilen, men heller ikke her er det noe signal."
+          ],
+        "ambientNoise": true,
+        "surprise": "oldwoman.jpg",
+        "choices": [
+          {"text":"Fortsett mot minibussen", "destination": "hvitthus-dame"}
+        ]
+      },
+
+      "hvitthus-dame": {
+        "text": [
+          "En gammel dame står plutselig foran dere.",
+          "'Dere banket på?' sier hun med en rusten stemme.",
+          "'J-ja! Bilen vår har havarert, vi trenger å låne en telefon for å ringe etter hjelp...'",
+          "'... Bli med meg inn i huset ...'"
+          ],
+        "ambientNoise": true,
+        "choices": [
+          {"text":"Bli med damen inn i huset", "destination": "hvitthus-dame2"},
+          {"text":"Snu og løp så fort dere kan ", "destination": "hvitthus-dame-løp"}
+        ]
+      },
+
+      "hvitthus-dame2": {
+        "text": [
+          "Dere kikker bekymret på hverandre, men bestemmer dere for å følge damen inn i huset.",
+          "Gangen er mørk, og kun noen få stearinlys lyser opp, og kaster lange, spøkelsesaktige skygger på veggene.",
+          "De gamle tregulvene knirker i det dere beveger dere mot stuen lengst inne.",
+          "Stuen er stor, og gulvet dekket av gamle og slitte skinnfeller. Møblene er støvete, og fulle av hull.",
+          "Dere merker plutselig at damen dere fulgte etter har forsvunnet mens dere så dere rundt."
+          ],
+        "surprise": "oldwoman.jpg",
+        "choices": [
+          {"text":"Se etter damen", "destination": "hvitthus-dame3"},
+          {"text":"Kom dere ut av huset", "destination": "hvitthus-dame3"}
+        ]
+      },
+
+      "hvitthus-dame3": {
+        "text": [
+          "'Her er min iPhone 5s,' hører dere plutselig bak dere.",
+          "Damen låser opp telefonen med fingeravtrykket sitt.",
+          "'Det er ikke mobildekning her, men dere kan bruke Skype, vi har 100 Mbps-linje fiber, så det burde gå fint.'",
+          "'Vil dere ha noen vafler?'"
+          ],
+        "choices": [
+          {"text":"Ring etter bilberging", "destination": "hvitthus-dame4"}
+        ]
+      },
+
+      "hvitthus-dame4": {
+        "text": [
+          "På vei nedover fjellsiden, ser dere blinklysene til tauebilen i det fjerne. Regnet har nesten stoppet, men dere hører fortsatt svake drønn av tordenværet som er på vei vekk fra dere.",
+          "Trøtte og slitne kommer dere fram til en sovende Yibo. Dere banker på, og han låser opp bildørene for dere.",
+          "'Fikk dere noen vafler?' spør han, i det tauebilen svinger inn fremfor dere."
+          ],
+        "choices": [
+          {"text":"SLUTT", "destination": "END"}
+        ]
+      },
+
+      "hvitthus-dame-løp": {
+        "text": [
+          "Dere har en dårlig følelse - Foreldrene deres har advart dere mot å følge etter fremmede.",
+          "I det den gamle damen snur seg for å lede veien inn mot huset, snur dere og løper alt dere kan.",
+          "Trærne suser forbi. Adrenalinet pumper. Dere løper og sklir nedover bakkene. Det er blitt kaldere, men dere merker det ikke. Dere merker heller ikke at dere løper lengre og lengre inn i skogen.",
+          "Dere kan såvidt høre damen rope etter dere, men hva sier hun? Ikke løp den veien?"
+          ],
+        "ambientNoise": true,
+        "choices": [
+          {"text":"Stopp og lytt", "destination": "hvitthus-dame-løp-a"},
+          {"text":"Løp videre", "destination": "hvitthus-dame-løp-b"}
+        ]
+      },
+
+      "hvitthus-dame-løp-a": {
+        "text": [
+          "Dere stopper opp. Blodet pumper.",
+          "Så merker dere at dere har blitt omringet.",
+          "Gule, lysende øyne stirrer på dere fra skyggene.",
+          "Før dere har rukket å skrike, har de tre meter høye zombiekuene svelget dere hele."
+          ],
+        "ambientNoise": true,
+        "choices": [
+          {"text":"SLUTT", "destination": "END"}
+        ]
+      },
+
+      "hvitthus-dame-løp-b": {
+        "text": [
+          "Dere merker at dere blir forfulgt.",
+          "En av Cecilies zombiekuer har rømt fra laboratoriet, og følger tett etter dere, tørst etter deres hjernemasse.",
+          "Dere kjenner blodsmaken i munnen, og beina kjennes svakere for hvert sprang. Hvis ikke det skjer et mirakel, så blir dere snart ku-mat.",
+          "Så hører dere hjerteskjærende høy rauting, og det blir stille."
+          ],
+        "ambientNoise": true,
+        "choices": [
+          {"text":"Stopp og snu", "destination": "hvitthus-dame-løp-b2"}
+        ]
+      },
+
+      "hvitthus-dame-løp-b2": {
+        "text": [
+          "Dere stopper, kjenner lukten av blod.",
+          "En skikkelse står ved et nedfelt dyr, med blod rundt munnen. Så snur han mot dere.",
+          "'You shouldn't be here,' sier Twilight-Edward, 'this place is dangerous.'",
+          "Dere er usikre på om hans ansiktsuttrykk antyder en genuin bekymring eller en lei forstoppelse.",
+          "'I will follow you back to your van, my dad is already helping your friend get it fixed.'",
+          "Edward tørker bort blodet fra munnvikene med ermene, og dere trasker sammen mot bilen."
+          ],
+        "ambientNoise": true,
+        "choices": [
+          {"text":"SLUTT", "destination": "END"}
+        ]
+      },
+
+      "hvitthusbank3": {
+        "text": [
+          "Ingen svarer, så dere bestemmer dere for å gå rundt huset for å se om dere finner en annen inngang.",
+          "Fra fjelltoppen dere står på, ser dere tydelig minibussen til Yibo nedenfor. Det ryker av motoren, og mest sannsynlig blir det ikke mulig å starte den igjen på en stund.",
+          "'Kanskje vi har mobilsignal her oppe?'",
+          "Dere trekker frem mobilen, men heller ikke her er det noe signal."
+          ],
+        "ambientNoise": true,
+        "surprise": "oldwoman.jpg",
+        "choices": [
+          {"text":"Gå tilbake mot minibussen", "destination": "hvitthus3"}
+        ]
+      },
+
+      "rødthus": {
+        "text": [
+          "'La og gå til det røde huset, hvis det er en mobilmast, så bør det være en nødtelefon der.'",
+          "Det er ingen vei til huset, så dere må krysse over jordet - Gjørmen surkler lengre inn i skoene med hvert skritt, og rekker dere etterhvert til knærne. Det tar mye lengre tid enn dere tenkte.",
+          "'Hva er det der borte?' Det er omtrent ti meter igjen til huset, men dere skimter noe tredve meter til høyre. Det ser ut som en bil som er delvis sunket ned i gjørmen. Dere ser såvidt noen oransje lys blinke gjennom gjørmen som dekker bilen opp til vinduene."
+          ],
+        "ambientNoise": true,
+        "choices": [
+          {"text":"Undersøk bilen", "destination": "bil"},
+          {"text":"Fortsett mot det røde huset", "destination": "rødthus2"}
+        ]
+      },
+
+      "rødthus2": {
+        "text": [
+          "Dere bestemmer dere for å sjekke det røde huset først, og se om dere får tak i hjelp",
+          "",
+          "'Hva er det der borte?' Det er omtrent femti meter igjen til huset, men dere skimter noe tjue meter til høyre. Det ser ut som en bil som er delvis sunket ned i gjørmen. Dere ser såvidt noen oransje lys blinke gjennom gjørmen som dekker bilen opp til vinduene."
+          ],
+        "ambientNoise": true,
+        "choices": [
+          {"text":"Undersøk bilen", "destination": "bil"},
+          {"text":"Fortsett mot det røde huset", "destination": "rødthus2"}
+        ]
+      },
+
+      "bil": {
+        "text": [
+          "'Ser ut som det har vært en ulykke, kanskje noen trenger hjelp?'",
+          "Dere beveger dere mot bilen, en eldre, men velhodt modell av Mercedes. Gjørmen har sprutet godt opp på vinduene på bilen, så dere klarer ikke å se om det sitter noen der.",
+          "Så merker dere at det er noen merkelige spor rundt bilen. Kan det være et dyr? Ser ut til å være et relativt stort dyr, da sporene går ganske dypt."
+          ],
+        "surprise": "alien.jpg",
+        "ambientNoise": true,
+        "choices": [
+          {"text":"Undersøk bilen nærmere", "destination": "bil2"}
+        ]
+      },
+
+      "bil2": {
+        "text": [
+          "'Neimen, så hyggelig å se en gruppe med frisk ungdom! Jeg har hatt et lite uhell med bilen, kan dere være så vennlige å hjelpe meg å løfte ut bilen fra gjørmen? Min satelittelefon er i min veske, og den ligger i bagasjerommet, som jeg ikke får opp på grunn av all denne ufyselig gjørmen! Jeg mener, jeg tar gjerne litt leire på huden for da blir den så myk og fin, men gid, dette var da altfor meget!'",
+          "Lammet av skrekk, stirrer dere på vesenet som står fremfor dere.",
+          "'Dere kan kalle meg Laila, jeg var på vei hjem fra min svoger, og tror jeg tok *litt* for mye av den schnapsen, så endte opp her etter en liten utforkjøring, men nå som dere kjekke ungdommer er her, så tror jeg vi klarer å få det til om vi løfter på en-to-tre, så... Har jeg noe i tennene, hvorfor stirrer dere sånn?'",
+          "Det er nok best å ikke gjøre Laila sint..."
+          ],
+        "ambientNoise": true,
+        "choices": [
+          {"text":"Hjelp til med å løfte bilen", "destination": "bil3"}
+        ]
+      },
+
+      "bil3": {
+        "text": [
+          "'En! To! Tre!'",
+          "Med alles hjelp, klarer dere å løfte opp bilen de centimetrene som trengtes for å få åpnet bagasjerommet.",
+          "Laila henter ut sin Louis Vutton, og fisker frem satelittelefonen.",
+          "'Tusen takk skal dere ha, jeg har ringt etter hjelp for både meg og dere! Her er en liten gave som takk for hjelpen,' sier Laila, og gir dere en eske på størrelse med en mikrobølgeovn."
+          ],
+        "ambientNoise": true,
+        "choices": [
+          {"text":"Gå tilbake til minibussen", "destination": "bil4"}
+        ]
+      },
+
+      "bil4": {
+        "text": [
+          "'Så hyggelig at vi kunne hjelpe andre,' smiler Yibo, 'Det må ha vært en del av Guds plan at vi havnet her'.",
+          "Av en eller annen grunn, føltes det ikke helt slik ut.",
+          "'Hva fikk dere av den hyggelige damen?'",
+          "Dere åpner opp esken forsiktig, og ser et egg som er i ferd med å klekkes..."
+          ],
+        "ambientNoise": true,
+        "choices": [
+          {"text":"SLUTT", "destination": "END"}
+        ]
+      }
+      
+    }
+}

@@ -1,0 +1,121 @@
+body {
+  background: #333;
+  color: #fff;
+  font-size: 12px;
+  font-family: Georgia, serif;
+}
+
+#scene, .background, #stage, #foreground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+#bg1 {
+  background: url(../img/woods.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  opacity: 0.2;
+}
+#rain {
+  background: url(../img/rain.gif);
+  opacity: 0.1;
+}
+#stage {
+  max-width: 1280px;
+  margin: auto;
+  padding: 2em;
+  font-size: 250%;
+  line-height: 160%;
+  overflow-y: auto;
+}
+#foreground {
+  pointer-events: none;
+}
+.lightning {
+  background-color: #fff;
+  opacity: 0;
+  -webkit-animation: lightning 20s infinite;
+  -moz-animation:    lightning 20s infinite;
+  -o-animation:      lightning 20s infinite;
+  animation:         lightning 20s infinite;
+}
+#surprise {
+  pointer-events: none;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+#maintext {
+  -webkit-animation: opacitypulse 3s infinite;
+  -moz-animation:    opacitypulse 3s infinite;
+  -o-animation:      opacitypulse 3s infinite;
+  animation:         opacitypulse 3s infinite;
+}
+button {
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  padding: .5em;
+  border: 2px solid #fff;
+  cursor: pointer;
+  opacity: 0.5;
+  ;
+}
+button:hover, button:focus {
+  -webkit-animation: opacitypulse 1s infinite;
+  -moz-animation:    opacitypulse 1s infinite;
+  -o-animation:      opacitypulse 1s infinite;
+  animation:         opacitypulse 1s infinite;
+}
+@-webkit-keyframes opacitypulse {
+  0%   { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+@-moz-keyframes opacitypulse {
+  0%   { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+@-o-keyframes opacitypulse {
+  0%   { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+@keyframes opacitypulse {
+  0%   { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+@-webkit-keyframes lightning {
+  0% { opacity: 1; }
+  1% { opacity: 0; }
+  2% { opacity: 1; }
+  4% { opacity: 0; }
+  100% { opacity: 0; }
+}
+@-moz-keyframes lightning {
+  0% { opacity: 1; }
+  1% { opacity: 0; }
+  2% { opacity: 1; }
+  4% { opacity: 0; }
+  100% { opacity: 0; }
+}
+@-o-keyframes lightning {
+  0% { opacity: 1; }
+  1% { opacity: 0; }
+  2% { opacity: 1; }
+  4% { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes lightning {
+  0% { opacity: 1; }
+  1% { opacity: 0; }
+  2% { opacity: 1; }
+  4% { opacity: 0; }
+  100% { opacity: 0; }
+}

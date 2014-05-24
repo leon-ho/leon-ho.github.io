@@ -1,0 +1,18 @@
+{
+  "title": "Winter Camp",
+  "description": "What would happen if Summer Camp was in Australia?",
+  "scenes": {
+
+      "START": {
+        "text": [
+          "'We have decided,' Billy said, 'to move Summer Camp to Australia'.",
+          "We were baffled, but accepted our surpreme leader's decision without question. After all, he must have a good reason for it?",
+          "That was two months ago. Now, all of you are sitting in a freight container bound for Perth, at the western coastline of Australia."
+          ],
+        "ambientNoise": true,
+        "choices": [
+          {"text":"Se dere rundt", "destination": "minibuss"}
+        ]
+      }
+  }
+}

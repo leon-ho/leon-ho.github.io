@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="CyaApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Choose Your Adventure</title>
+    <link rel="stylesheet" href="css/main.css"/>
+  </head>
+  
+  <body>
+
+    <div id="scene" ng-controller="MainCtrl">
+      <div class="background" id="bg1"></div>
+      <div class="background" id="rain" ng-show="adventure.scene.ambientNoise"></div>
+      <div id="stage">
+        
+        <div id="maintext"><p ng-repeat="sentence in adventure.scene.text" ng-bind="sentence"></p></div>
+        <button ng-repeat="choice in adventure.scene.choices" ng-click="gotoScene(choice.destination)" ng-bind="choice.text"></button>
+
+        <button ng-repeat="a in adventure.list" ng-click="startAdventure($index)" ng-hide="adventure.active">{{a.title}}<br/><small>{{a.description}}</small></button>
+        <button ng-click="continueAdventure()" ng-show="loadedAdventure > -1 && !adventure.active">Load {{loadedAdventure}}: {{loadedScene}}</button>
+
+      </div>
+      <div id="foreground" class="lightning"></div>
+      <div id="surprise" class="background" ng-show="adventure.showSurprise" ng-style="{'background-image': 'url(img/'+adventure.scene.surprise+')'}"></div>
+    </div>
+
+    <audio autoplay loop id="rain">
+      <source src="media/thunderstorm.mp3" type="audio/mpeg">Your browser does not support the audio element.
+    </audio>
+    <audio id="scream">
+      <source src="media/scream.wav" type="audio/wav">Your browser does not support the audio element.
+    </audio>
+
+    <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+    <script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.4.1/firebase-simple-login.js'></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-route.min.js"></script>
+
+    <script src="js/CyaApp.js"></script>
+    <script src="js/UrlService.js"></script>
+    <script src="js/AdventureService.js"></script>
+
+  </body>
+
+</html>
