@@ -47,6 +47,7 @@ p {
 	background: white;
 	top: -7em;
 	left: 50%;
+	margin-left: -1em;
 	width: 2em;
 	height: 2em;
 	z-index: 5;
@@ -393,17 +394,35 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aaaaaa', end
 		#sprite:before {
 			content: attr(data-saying);
 			font-family: 'Press Start 2P', fixedsys, sans-serif;
-			font-size: 24px;
 			position: absolute;
+			text-align: center;
+			top: -3em;
+			width: 18em;
+			left: -10em;
+			font-size: 24px;
+			z-index: 5;
 		}
+
+		@media all and (max-width: 800px) {
+		  #sprite:before {
+		  	font-size: 16px;
+		  }
+		}
+
+		@media all and (max-width: 600px) {
+		  #sprite:before {
+		  	font-size: 8px;
+		  }
+		}
+
 		#sprite2:hover:before {
 			content: attr(data-saying);
 			font-family: 'Press Start 2P', fixedsys, sans-serif;
+			position: absolute;
 			font-size: 16px;
 			color: #777;
-			position: absolute;
 		}
-		.mirrored {
+		.mirrored, #sprite.mirrored:before {
 		    -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
 		    -moz-transform: matrix(-1, 0, 0, 1, 0, 0);
 		    -o-transform: matrix(-1, 0, 0, 1, 0, 0);

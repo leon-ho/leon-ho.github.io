@@ -114,7 +114,7 @@
 	  				controller: 'projectController'
 	  			}).
 	  			otherwise({
-	  				redirectTo: '/project'
+	  				redirectTo: '/'
 	  			});
 	  		}
 	  	]);
@@ -222,11 +222,24 @@
 				speed: 0,
 				sayings: [
 					'Hey...',
-					'Something is not quite right...',
+					'Something is not right...',
 					"I'm stuck!",
-					'Should not have had those extra burgers.',
 					'...',
-					'The view is pretty nice.'
+					'Should not have had those extra burgers.',
+					'.',
+					'..',
+					'...',
+					'....',
+					'.....',
+					'......',
+					'.......',
+					'........',
+					'.........',
+					'..........',
+					'...........',
+					'The view is pretty nice.',
+					'Running around like this seems pretty meaningless.',
+					"Fun fact: Otters hold hands when sleeping so they don't float away from each other."
 				],
 				sayingscounter: 0,
 				walkingInterval: {},
@@ -255,6 +268,7 @@
 		  		if(sprite.status != 'walking'+direction) {
 		  			console.log('Move it to the ' + direction + '!');
 			  		sprite.status = 'walking'+direction;
+			  		sprite.$.attr('data-saying', sprite.sayings[sprite.sayingscounter++]);
 			  		clearInterval( sprite.walkingInterval );
 			  		clearInterval( sprite.deceleratingInterval );
 			  		sprite.$.addClass('walking');
