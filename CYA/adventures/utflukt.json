@@ -51,7 +51,7 @@
         "ambientNoise": true,
         "choices": [
           {"text":"Gå tilbake til minibussen", "destination": "hvitthusbank2"},
-          {"text":"Gå rundt huset for å se dere om", "destination": "svarthus"}
+          {"text":"Gå rundt huset for å se dere om", "destination": "hvitthusbank3"}
         ]
       },
 
@@ -66,7 +66,8 @@
         "ambientNoise": true,
         "surprise": "oldwoman.jpg",
         "choices": [
-          {"text":"Fortsett mot minibussen", "destination": "hvitthus-dame"}
+          {"text":"Fortsett mot minibussen", "destination": "hvitthus-dame"},
+          {"text":"Prøv å gå høyere i terrenget for å få signal", "destination": "hvitthus-dame"}
         ]
       },
 
@@ -182,12 +183,13 @@
           "Ingen svarer, så dere bestemmer dere for å gå rundt huset for å se om dere finner en annen inngang.",
           "Fra fjelltoppen dere står på, ser dere tydelig minibussen til Yibo nedenfor. Det ryker av motoren, og mest sannsynlig blir det ikke mulig å starte den igjen på en stund.",
           "'Kanskje vi har mobilsignal her oppe?'",
-          "Dere trekker frem mobilen, men heller ikke her er det noe signal."
+          "Dere trekker frem mobilene, men heller ikke her er det noe signal."
           ],
         "ambientNoise": true,
         "surprise": "oldwoman.jpg",
         "choices": [
-          {"text":"Gå tilbake mot minibussen", "destination": "hvitthus3"}
+          {"text":"Gå tilbake mot minibussen", "destination": "hvitthus-dame"},
+          {"text":"Forsøk å bryte dere inn", "destination": "hvitthus-dame"}
         ]
       },
 
@@ -206,14 +208,65 @@
 
       "rødthus2": {
         "text": [
-          "Dere bestemmer dere for å sjekke det røde huset først, og se om dere får tak i hjelp",
-          "",
-          "'Hva er det der borte?' Det er omtrent femti meter igjen til huset, men dere skimter noe tjue meter til høyre. Det ser ut som en bil som er delvis sunket ned i gjørmen. Dere ser såvidt noen oransje lys blinke gjennom gjørmen som dekker bilen opp til vinduene."
+          "Dere bestemmer dere for å sjekke det røde huset først, og se om dere får tak i hjelp.",
+          "Tårnet ser mye høyere ut når dere står ved huset, og rager minst tjue meter opp i været.",
+          "Døra inn til huset er ulåst, og åpner seg overraskende lett i det dere dytter i håndtaket."
           ],
         "ambientNoise": true,
         "choices": [
-          {"text":"Undersøk bilen", "destination": "bil"},
-          {"text":"Fortsett mot det røde huset", "destination": "rødthus2"}
+          {"text":"Fortsett inn i det røde huset", "destination": "rødthus3"}
+        ]
+      },
+
+      "rødthus3": {
+        "text": [
+          "Bygningen består av et eneste stort rom. Det er tomt bortsett fra et bord med en gammel telefon med roterende ringeskive, og en rekke fotografier på veggen.",
+          "Fotografiene ser ut til å være tatt i dette rommet.",
+          "Plutselig begynner det å ringe."
+          ],
+        "choices": [
+          {"text":"Ta telefonen", "destination": "rødthus4"},
+          {"text":"NOPE! Stikk!", "destination": "bil0"}
+        ]
+      },
+
+      "rødthus4": {
+        "text": [
+          "'Hallo?'",
+          "Først hører dere ingen respons, men så merker dere en lav mumling. Det virker som om noen har ringt uten å vite det.",
+          "Plutselig hører dere et hjerteskjærende hyl."
+          ],
+        "surprise": "timewarp.jpg",
+        "choices": [
+          {"text":"Hold linja", "destination": "rødthus5"},
+          {"text":"Legg på", "destination": "rødthus5"}
+        ]
+      },
+
+      "rødthus5": {
+        "text": [
+          "Dere blendes av et skarpt lys.",
+          "Når dere får tilbake synet, har dere en merkelig følelse - Dere klarer ikke bevege dere.",
+          "Dere befinner dere fortsatt i samme bygning, men det virker som dere er bak en glassvegg.",
+          "Dere ser nærmere på fotografiene på motsatt side av veggen. Alle er av personer hvor en av dem holder i telefonrøret.",
+          "Så går det opp for dere - Dere er fanget..."
+          ],
+        "choices": [
+          {"text":"SLUTT", "destination": "END"}
+        ]
+      },
+
+      "bil0": {
+        "text": [
+          "Et tomt og forlatt hus, og plutselig en telefon som ringer? Dette er sånn skrekkfilmer starter, best å ikke ta den.",
+          "Dere løper ut av huset i en voldsom fart. Været har blitt verre, og tårnet svaier kraftig i vinden.",
+          "Gjørmen har blitt ennå dypere av regnet, og dere merker at det går saktere og saktere - Det føles ut som det tar dobbelt så lang tid å komme seg tilbake på veien.",
+          "Så merker dere at dere har kommet frem til bilen dere så tidligere."
+          ],
+        "surprise": "alien.jpg",
+        "ambientNoise": true,
+        "choices": [
+          {"text":"Løp videre", "destination": "bil2"}
         ]
       },
 
@@ -263,7 +316,6 @@
           "'Hva fikk dere av den hyggelige damen?'",
           "Dere åpner opp esken forsiktig, og ser et egg som er i ferd med å klekkes..."
           ],
-        "ambientNoise": true,
         "choices": [
           {"text":"SLUTT", "destination": "END"}
         ]

@@ -10,7 +10,7 @@ CyaApp.controller('MainCtrl', function($scope, Url, Adventure) {
 
     function init() {
 
-    	Adventure.loadList(['utflukt.json','wintercamp.json']);
+    	Adventure.loadList(['utflukt.json']);
 
     	var urlvars = url.getParams();
 		if(urlvars) {

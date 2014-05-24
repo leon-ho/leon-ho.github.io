@@ -11,7 +11,7 @@
           ],
         "ambientNoise": true,
         "choices": [
-          {"text":"Se dere rundt", "destination": "minibuss"}
+          {"text":"", "destination": "minibuss"}
         ]
       }
   }
