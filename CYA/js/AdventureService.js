@@ -9,6 +9,7 @@ CyaApp.service('Adventure', function($http, $timeout, Url){
 
     var rain = document.getElementById('rain');
     var scream = document.getElementById('scream');
+    scream.volume = 0.1;
 
 	this.loadList = function(adventureList) {
 		console.log('Loading list of adventures', adventureList.length);
