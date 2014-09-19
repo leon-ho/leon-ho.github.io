@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="EDiceApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ESCAPE DICE</title>
+    <style>
+    	
+    	* {margin:0; padding:0; font-size: 16px;}
+    	
+    	.container { background-color: #eee; position: absolute; top:0; left:0; right:0; bottom:0; text-align: center; overflow: hidden;}
+
+    	.top { background-color: #555; height: 40%;}
+    	.center { background-color: #aaa; height: 40%;}
+    	.bottom { background-color: #983; height: 20%; z-index: 300; position: fixed; bottom: 0; left: 0; right: 0;}
+
+    	.dice { 
+    		margin: 2%; 
+    		float: left; 
+    		background-color: #fff; 
+    		border-radius: 3px; 
+    		padding: 2% 2% 300% 2%; 
+    		position: relative; 
+    		bottom: 0;
+    		box-shadow: 0 5px 20px 5px rgba(0,0,0,0.5);
+    		-webkit-transition: all .5s ease-in-out; 
+    		z-index: 300;}
+    	.dice-inactive {bottom: 100%;}
+    	.dice-rolling {bottom: -100%;}
+    	.dice .icon {width: 100%;}
+    	.menuBtn {background-color: #000; color: #fff; border:0; padding: .5em; position: fixed; top:0;right:0;z-index: 200}
+    	.rollBtn {color: #fff; background: transparent; border: 3px inset rgba(0,0,0,0.5); text-shadow: -1px -1px 2px 0 #555; display: block; padding: .5em; box-sizing: border-box; font-size: 400%; position: absolute; bottom: 0; left:0; right: 0;}
+    	
+		
+    </style>
+  </head>
+  <body ng-controller="EDiceCtrl">
+  	<div class="container">
+	  	<div class="top">
+	  	</div>
+	  	<div class="center">
+	  		<div class="dice" ng-repeat="d in dies" ng-click="d.active=!d.active" ng-class="{'dice-inactive': !d.active, 'dice-rolling': d.rolling}" style="width:{{diceWidth}}%;">
+	  			<img ng-src="icons/{{d.icon}}.svg" class="icon icon-{{d.icon}}"></i>
+	  		</div>
+	  	</div>
+	  	<div class="bottom">
+  			<button ng-click="roll()" class="rollBtn">Roll</button>
+  			<button class="menuBtn" ng-click="showMenu=!showMenu">Menu</button>
+  		</div>
+  	</div>
+  	<div class="right" ng-if="showMenu">
+
+  	</div>
+  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.1/angular.min.js"></script>
+  	<script>
+  		angular.module('EDiceApp', [])
+		.controller('EDiceCtrl', function($scope, $timeout) {
+			$scope.showMenu	 = true;
+			$scope.autoSave = true;
+			var icons = [
+				'running',
+				'running',
+				'web',
+				'swords',
+				'torch',
+				'key'
+				];
+			var cursedIcon = 'web';
+			var saveIcon = 'swords';
+			$scope.dies = [
+				{ active: true,	icon: 'running'},
+				{ active: true,	icon: 'running'},
+				{ active: true,	icon: 'running'},
+				{ active: true,	icon: 'running'},
+				{ active: true,	icon: 'running'}
+			];
+			$scope.roll = function(){
+				var saves = 0;
+				for(var i = 0; i < $scope.dies.length; i++) {
+					if($scope.dies[i].active){
+						$scope.dies[i].rolling = true;
+						var iconIndex = Math.floor((Math.random() * icons.length));
+						$scope.dies[i].icon = icons[iconIndex];
+						unrollDice(i);
+						if(icons[iconIndex]==cursedIcon) $scope.dies[i].active=false;
+						if(icons[iconIndex]==saveIcon) saves+=2;
+					}
+				}
+				if($scope.autoSave){
+					for(var i = 0; i < $scope.dies.length; i++) {
+						if(saves>0 && $scope.dies[i].icon == cursedIcon) {
+							$scope.dies[i].active=true;
+							saves--;
+						}
+					}
+				}
+			}
+			function unrollDice(i){
+				$timeout(function(){
+					$scope.dies[i].rolling = false;
+				}, (i+1)*250+500);
+			}
+			function getDiceWidth(){
+				return (100/$scope.dies.length)-8;
+			}
+			$scope.diceWidth = getDiceWidth();
+		});
+  	</script>
+  </body>
+</html>
