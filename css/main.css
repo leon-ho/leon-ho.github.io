@@ -1,7 +1,6 @@
 
 body {
-	padding-bottom: 24em;	
-	background-color: #ddd;
+	padding-bottom: 24em;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -25,6 +24,12 @@ p {
 .pixelfont {
 	font-family: 'Press Start 2P', fixedsys, sans-serif;
 	font-size: 24px;
+}
+
+.logo {
+	max-width: 50%;
+	max-height: 3.5em;
+	margin-bottom: 1em;
 }
 
 @media all and (max-width: 800px) {
@@ -67,34 +72,46 @@ p {
 
 #projectlist li {
 	padding: 0;
+	position: relative;
 }
 
 #projectlist a {
 	background-size: cover; 
 	background-position: center;
 	height: 0; 
-	padding-bottom: 80%; 
-	position: relative;
+	padding-bottom: 80%;
 	display: block;
 	transition: all .3s;
 }
-#projectlist a div {
-	background: rgba(48, 148, 180, 0.9);
+.v-container {
 	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	top: 0;
+	top:0;
+	right:0;
+	left:0;
+	bottom:0;
+	background: rgba(48, 148, 180, 0.8);
 	transition: all .3s;
-	padding-top: 30%;
+	white-space: nowrap;
 }
-#projectlist a div:hover {
-	background: rgba(239, 171, 0, 0.9);
+.v-container:hover {
+	background: rgba(239, 171, 0, 0.8);
 	/*
 	transform: scale(1.05);
 	-ms-transform: scale(1.05);
 	-webkit-transform: scale(1.05);
 	*/
+}
+.v-container:after {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* Adjusts for spacing */
+}
+.v-centered {
+	width: 100%;
+	display: inline-block;
+	vertical-align: middle;
 }
 #wall {
 	background: #3094b4; 
@@ -290,6 +307,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aaaaaa', end
 }
 
 #footer {
+	background-color: #555;
 	position: fixed;
 	bottom: 0;
 	left: 0;

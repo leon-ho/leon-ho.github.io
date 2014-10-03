@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 
 <head>
@@ -59,12 +59,15 @@
 	</div>
 
 	<div id="desk">
-		<ul class="small-block-grid-2 large-block-grid-4 text-center" id="projectlist">
+		<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4 text-center" id="projectlist">
 			<li ng-repeat="p in project.all">
 				<a href="#/project/{{$index}}" ng-style="p.mainimg && {'background-image':'url('+p.mainimg+')'}">
-					<div>
-						<h4 class="colorwhite">{{p.title}}</h5>
-						<h5 class="subheader colorwhite">{{p.client}}</h6>
+					<div class="v-container">
+						<div class="v-centered">
+							<img ng-src="{{p.logo}}" alt="{{p.client}}" ng-if="p.logo" class="logo">
+							<h5 class="colorwhite">{{p.client}}</h5>
+							<h6 class="subheader colorwhite">{{p.title}}</h6>
+						</div>
 					</div>
 				</a>
 			</li>
@@ -75,7 +78,7 @@
 		<div class="row">
 			<div class="large-6 large-centered columns">
 				<a href="mailto:leonho@altran.com"><div id="sprite2" style="margin: auto;" data-saying="Call me, maybe?"></div></a>
-				<h6 class="subheader text-center" style="margin: 2em">Leon jobber for Altran Norge som UX-designer og frontend-utvikler. </h6>
+				<h6 class="subheader text-center colorwhite" style="margin: 2em">Leon jobber for Altran Norge som UX-designer og frontend-utvikler. </h6>
 			</div>
 		</div>
 	</div>
@@ -91,9 +94,12 @@
 	</div>
 	
 	<script type="text/ng-template" id="project.html">
-		<h2>{{project.active.title}}</h2>
-		<h4 class="subheader">{{project.active.subtitle}}</h4>
+		<h1 class="text-center subheader">{{project.active.client}}</h1>
+		<h3 class="text-center ">{{project.active.title}}</h3>
+		<h5 class="text-center subheader">{{project.active.subtitle}}</h5>
 		<p ng-repeat="p in project.active.description">{{p}}</p>
+		<p ng-repeat="i in project.active.imgs"><img src="{{i}}" alt="{{project.active.client}} {{project.active.title}}"></p>
+		<p ng-if="project.active.link"><a href="{{project.active.link}}"></a></p>
 	</script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
@@ -127,11 +133,50 @@
 
 	  		$scope.project.all = [
 				{
+					title: 'Single Page Application',
+					subtitle: 'Interaksjonsdesign og grafisk design',
+					description: ['Adra Match lager verktøy for å forenkle prosessen med avstemming og andre oppgaver i forbindelse med periodeavslutninger, og gjør det enkelt å kvalitetssikre og spore oppgavene som blir gjort. I dette prosjektet ønsket de hjelp til å tilføre sine produkter et mer enhetlig interaksjon og grafisk uttrykk.',
+						'Jeg fikk muligheten til å gå gjennom brukergrensesnittet på deres eksisterende nett-baserte tjenester, og å så på hvordan brukervennlighet og grafisk design kunne forbedres. Jeg laget retningslinjer for interaksjonsdesign, og en styleguide for grafisk design, og laget også skisser for å vise hvordan deres kommende produkter kan se ut med det nye uttrykket.'],
+					client: 'Adra Match',
+					logo: 'img/projects/adramatch-logo.png',
+					mainimg: 'img/projects/adramatch1.PNG',
+					imgs: [
+						'img/projects/adra-login.png',
+						'img/projects/adra-template.png',
+						'img/projects/adra-dashboard.png'
+					],
+					thumbnail: 'img/projects/adramatch1.PNG',
+					tags: 'illustration interactiondesign graphicaldesign'
+				},
+				{
+					title: 'User Admin Webapp',
+					subtitle: 'Frontend, grafisk design og interaksjonsdesign',
+					description: [
+						'Whydah er en Open-Source løsning for Single Sign-On som tilbyr avansert rollebaserte tilgangskontroll og fleksible integarasjoner. ',
+						'Jeg har vært med på å designe og kode webappen for brukeradministrasjon, og var også med på å utforme grensesnittet og JSON-strukturen mot backend. De viktigste hjelpemidlene for å få raskt opp og kjøre var Bootstrap/Bootswatch og AngularJS.',
+						'Jeg jobbet også mye med promo-siden og grafikk for prosjektet.'
+					],
+					client: 'Whydah',
+					logo: 'img/projects/whydah-logo.png',
+					mainimg: 'img/projects/whydah-uawa.png',
+					imgs: [
+						'img/projects/Whydah-promopage.jpg',
+						'img/projects/Whydah-Diagram.png'
+					],
+					link: 'https://getwhydah.com',
+					thumbnail: 'img/projects/whydah-uawa.png',
+					tags: 'html css javascript illustration interactiondesign graphicaldesign'
+				},
+				{
 					title: 'Utstillingsapp',
 					subtitle: 'Interaksjonsdesign og illustrasjonsbilder',
-					description: ['Norsk Kennel Klub arrangerer mange hundeutstillinger i året - I dette prosjektet utforskes vi hvordan nettbrett kan brukes for å forenkle og forbedre resultat- og datainnsamlingen under disse utstillingene.'],
+					description: [
+						'Norsk Kennel Klub arrangerer mange hundeutstillinger i året - I dette prosjektet utforskes vi hvordan nettbrett kan brukes for å forenkle og forbedre resultat- og datainnsamlingen under disse utstillingene. Jeg laget konseptrendringer og wireframes for flyten i applikasjonen.'
+						],
 					client: 'NKK',
+					logo: 'img/projects/NKK-logo.png',
 					mainimg: 'img/projects/nkk1.jpg',
+					imgs: ['img/projects/nkk-utstilling.png'],
 					thumbnail: 'img/projects/nkk1.jpg',
 					tags: 'illustration interactiondesign graphicaldesign'
 				},
@@ -140,18 +185,21 @@
 					subtitle: 'Altran Competence System for konsulent-CVer',
 					description: [
 						'Altran har i Norge og Sverige til sammen fler enn 400 ansatte. Som en bedrift med fokus på konsulentvirksomhet, er det svært viktig at informasjon om konsulentenes erfaringer er oppdatert og lett tilgjengelig for salg og videreutvikling. Tidligere har dette vært lagret i enkeltstående CV-dokumenter og diverse kompetansematriser, men dette har vært vanskelig å gjenbruke, oppdatere og holde organisert.',
-						'Jeg vært utviklingsansvarlig for det nye salg og kompetansesystemet for Altran. I dette prosjektet har jeg over tid hatt ansvar for både utvikling, interaksjonsdesign, grafisk design og drift. Tjenesten kjører på Microsofts skytjeneste Azure, og ble i 2013 rullet ut for Altrans kontorer i Stockholm, Gothenburg, Malmö, Borlänge og Karlstad, i tillegg til Oslo.'],
+						'Jeg har vært utviklingsansvarlig for det nye salg og kompetansesystemet for Altran. I dette prosjektet har jeg over tid hatt ansvar for både utvikling, interaksjonsdesign, grafisk design og drift. Tjenesten ble i 2013 rullet ut for Altrans kontorer i Stockholm, Gothenburg, Malmö, Borlänge og Karlstad, i tillegg til Oslo.'],
 					client: 'Altran',
+					logo: 'img/projects/ACS-logo.png',
 					mainimg: 'img/projects/altran-acs.jpg',
+					imgs: ['img/projects/acs-detail.jpg'],
 					phoneimg: 'img/projects/altran-acs-mobile.jpg',
 					thumbnail: 'img/projects/acs_s.png',
 					tags: 'django html css graphicaldesign interactiondesign javascript jquery'
 				},
 				{
-					title: 'Medlemssøk & Hundesøk',
+					title: 'Søketjeneste',
 					subtitle: 'Frontendutvikling - Søk mot Solr-indeks',
 					description: ['Norsk Kennel Klub har kompleks informasjon om registrerte hunder i Norge. I 2013 ønsket startet arbeidet med å indeksere deres databaser slik at man lettere får tak i den informasjonen man er ute etter. I den forbindelse utviklet jeg et webbasert grensesnitt for å gjøre fasetterte søk i den nye Solr-indeksen.'],
 					client: 'NKK',
+					logo: 'img/projects/NKK-logo.png',
 					mainimg: 'img/projects/nkk-solrsearch.png',
 					thumbnail: 'img/projects/nkk2.jpg',
 					tags: 'javascript jquery html css graphicaldesign interactiondesign'
@@ -159,9 +207,14 @@
 				{
 					title: 'Altran TV',
 					subtitle: 'HTML5 + Javascript Slideshow',
-					description: ['Et automatisk slideshow for Altran, laget i HTML, CSS-animasjoner og Javascript.'],
+					description: ['Et automatisk slideshow for Altran for å vise frem info om Altran og deres ulike prosjekter, laget i HTML, og Javascript med CSS-animasjoner.'],
 					client: 'Altran',
+					logo: 'img/altranwhite.png',
 					mainimg: 'img/projects/altrantv.jpg',
+					imgs: [
+						'img/projects/altrantv-solar.jpg',
+						'img/projects/altrantv-land.jpg'
+					],
 					phoneimg: 'img/projects/altrantvmobile.jpg',
 					thumbnail: 'img/projects/altrantv.jpg',
 					tags: 'javascript html css graphicaldesign'
@@ -239,7 +292,8 @@
 					'...........',
 					'The view is pretty nice.',
 					'Running around like this seems pretty meaningless.',
-					"Fun fact: Otters hold hands when sleeping so they don't float away from each other."
+					"Fun fact: Otters hold hands when sleeping so they don't float away from each other.",
+					''
 				],
 				sayingscounter: 0,
 				walkingInterval: {},
