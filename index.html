@@ -99,7 +99,7 @@
 		<h5 class="text-center subheader">{{project.active.subtitle}}</h5>
 		<p ng-repeat="p in project.active.description">{{p}}</p>
 		<p ng-repeat="i in project.active.imgs"><img src="{{i}}" alt="{{project.active.client}} {{project.active.title}}"></p>
-		<p ng-if="project.active.link"><a href="{{project.active.link}}"></a></p>
+		<p ng-if="project.active.link" class="text-center"><a href="{{project.active.link}}">{{project.active.client}}</a></p>
 	</script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
@@ -139,13 +139,13 @@
 					description: ['Adra Match lager verktøy for å forenkle prosessen med avstemming og andre oppgaver i forbindelse med periodeavslutninger, og gjør det enkelt å kvalitetssikre og spore oppgavene som blir gjort. I dette prosjektet ønsket de hjelp til å tilføre sine produkter et mer enhetlig interaksjon og grafisk uttrykk.',
 						'Jeg fikk muligheten til å gå gjennom brukergrensesnittet på deres eksisterende nett-baserte tjenester, og å så på hvordan brukervennlighet og grafisk design kunne forbedres. Jeg laget retningslinjer for interaksjonsdesign, og en styleguide for grafisk design, og laget også skisser for å vise hvordan deres kommende produkter kan se ut med det nye uttrykket.'],
 					logo: 'img/projects/adramatch-logo.png',
-					mainimg: 'img/projects/adramatch1.PNG',
+					mainimg: 'img/projects/adramatch1.png',
 					imgs: [
 						'img/projects/adra-login.png',
 						'img/projects/adra-template.png',
 						'img/projects/adra-dashboard.png'
 					],
-					thumbnail: 'img/projects/adramatch1.PNG',
+					thumbnail: 'img/projects/adramatch1.png',
 					tags: 'illustration interactiondesign graphicaldesign'
 				},
 				{
@@ -163,7 +163,7 @@
 						'img/projects/Whydah-promopage.jpg',
 						'img/projects/Whydah-Diagram.png'
 					],
-					link: 'https://getwhydah.com',
+					link: 'http://getwhydah.com',
 					thumbnail: 'img/projects/whydah-uawa.png',
 					tags: 'html css javascript illustration interactiondesign graphicaldesign'
 				},
@@ -195,7 +195,8 @@
 					mainimg: 'img/projects/nkk1.jpg',
 					imgs: ['img/projects/nkk-utstilling.png'],
 					thumbnail: 'img/projects/nkk1.jpg',
-					tags: 'illustration interactiondesign graphicaldesign'
+					tags: 'illustration interactiondesign graphicaldesign',
+					link: 'http://nkk.no'
 				},
 				{
 					title: 'ACS',
@@ -219,7 +220,8 @@
 					logo: 'img/projects/NKK-logo.png',
 					mainimg: 'img/projects/nkk-solrsearch.png',
 					thumbnail: 'img/projects/nkk2.jpg',
-					tags: 'javascript jquery html css graphicaldesign interactiondesign'
+					tags: 'javascript jquery html css graphicaldesign interactiondesign',
+					link: 'http://nkk.no'
 				},
 				{
 					title: 'Altran TV',
