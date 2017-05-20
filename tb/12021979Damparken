@@ -1,0 +1,6 @@
+{ "name": "Kjell Tomas Ringen", "bday": "12.02.1979", "card": "3999 8391 9201 7765", "transactions": [
+    {"id": 114, "date": "13.05", "text": "Ukjent", "amount": "1 000 000.00 kr"},
+    {"id": 113, "date": "08.05", "text": "Ukjent", "amount": " - 51.00 kr"},
+    {"id": 112, "date": "04.05", "text": "Lønn", "amount": "40 443.00 kr"},
+    {"id": 111, "date": "04.05", "text": "Narvesen", "amount": "- 138.00 kr"}
+] }

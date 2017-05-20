@@ -11,11 +11,13 @@
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
   <style>
+  body {padding-bottom: 2em;}
   .card {
     background: #2980b9;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, #2c3e50, #2980b9);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #2c3e50, #2980b9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     width: 400px;
+    max-width: 100%;
     height: 250px;
     box-sizing: border-box;
     padding: 20px;
@@ -32,33 +34,9 @@
     <nav class="navbar navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <a class="navbar-brand" href="#">Kebab Online Banking</a>
+          <a class="navbar-brand" href="#" id="logout" style="display: none">Logg av</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#" id="logout" style="display: none">Logout</a></li>
-            <!--<li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>-->
-            <!--<li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>-->
-          </ul>
-        </div><!--/.nav-collapse -->
       </div>
     </nav>
 
@@ -69,17 +47,17 @@
         <div class="jumbotron" style="max-width: 400px; margin: auto;">
           <h3>Kebab Online Banking</h3>
               <div class="form-group">
-                  <label for="bday">Birthdate DDMMYYYY</label>
+                  <label for="bday">Fødselsdato DDMMÅÅÅÅ</label>
                   <input type="text" class="form-control" id="bday" placeholder="DDMMYYYY" maxlength="8">
               </div>
               <div class="form-group">
-                  <label for="pass">Password</label>
+                  <label for="pass">Passord</label>
                   <input type="password" class="form-control" id="pass" placeholder="Password">
               </div>
-              <button type="submit" id="login" class="btn btn-default">Login</button>
+              <button type="submit" id="login" class="btn btn-default">Logg inn</button>
                   
           <div class="alert alert-danger" id="error" style="margin-top: 1em; display: none;">
-            Login failed - Please check if the birthday and password is correct.
+            Innlogging mislykkes - Vennligst sjekk at fødselsdato er riktig format, og at passordet stemmer.
           </div>
         </div>
       </form>
@@ -87,26 +65,26 @@
       <div id="content" style="display: none;">
       <h1 id="name"></h1>
       <h3 id="bdaydisplay"></h3>
-      <h4>Account activity</h4>
+      <h4>Siste transaksjoner</h4>
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>Transcation ID</th>
-            <th>Date</th>
-            <th>Text</th>
-            <th>Amount</th>
+            <th>ID</th>
+            <th>Dato</th>
+            <th>Tekst</th>
+            <th>Beløp</th>
           </tr>
         </thead>
         <tbody id="transactions">
           
         </tbody>
       </table>
-      <h4>Bank Cards</h4>
+      <h4>Dine bankkort</h4>
       <div class="card">
         <h3 id="cardname"></h3>
         <p id="cardnumber" style="color: white; text-shadow: 0 0 2px rgba(0,0,0,0.5)">
         </p>
-        <p class="small">Valid until: 2023</p>
+        <p class="small">Gyldig til: 2023</p>
       </div>
       </div>
 
@@ -150,7 +128,7 @@
                     html += '<tr><td>';
                     html += r.id + '</td><td>';
                     html += r.date + '</td><td>';
-                    html += r.text + '</td><td>';
+                    html += r.text + '</td><td class="text-right">';
                     html += r.amount + '</td></tr>';
                   }
                   $('#transactions').html(html);
